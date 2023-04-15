@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://kia8sa65w23j"]
+
+[ext_resource type="PackedScene" uid="uid://dw01dnavao45y" path="res://nodes/overworld/water.tscn" id="1_6fews"]
+
+[node name="Overworld" type="Node3D"]
+
+[node name="Water" parent="." instance=ExtResource("1_6fews")]
