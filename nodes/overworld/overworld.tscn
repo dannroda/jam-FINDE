@@ -1,7 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://kia8sa65w23j"]
+[gd_scene load_steps=3 format=3 uid="uid://kia8sa65w23j"]
 
 [ext_resource type="PackedScene" uid="uid://dw01dnavao45y" path="res://nodes/overworld/water.tscn" id="1_6fews"]
 
+[sub_resource type="PrismMesh" id="PrismMesh_0t0pk"]
+
 [node name="Overworld" type="Node3D"]
 
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 4.5901, 0)
+
 [node name="Water" parent="." instance=ExtResource("1_6fews")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.918267, 0.395962, 0, -0.395962, 0.918267, 1.31594, 0.148027, 0.0748763)
+mesh = SubResource("PrismMesh_0t0pk")
