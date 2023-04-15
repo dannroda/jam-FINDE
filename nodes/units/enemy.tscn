@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxmqe7bo5rfrx"]
+
+[ext_resource type="Shader" uid="uid://saynjqn5qxkk" path="res://nodes/units/enemy.tres" id="1_t5t3o"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x32x1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fu1pf"]
+render_priority = 0
+shader = ExtResource("1_t5t3o")
+
+[sub_resource type="BoxMesh" id="BoxMesh_f7qu0"]
+material = SubResource("ShaderMaterial_fu1pf")
+
+[node name="enemy" type="CharacterBody3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_x32x1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_f7qu0")

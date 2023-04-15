@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://3jg7grbr7iuu"]
+
+[ext_resource type="Script" path="res://nodes/units/Player/Player.gd" id="1_dsf25"]
+[ext_resource type="PackedScene" uid="uid://bdcgwr7ieyuqe" path="res://nodes/units/Player/boat.tscn" id="2_c6lyy"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3ujua"]
+size = Vector3(1, 2.68881, 0.655523)
+
+[node name="Player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0216145, 0)
+script = ExtResource("1_dsf25")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.66652, 0.745488, 0, -0.745488, 0.66652, 0.375737, 0, -0.254257)
+
+[node name="Camera3D" type="Camera3D" parent="Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 0.980853, -0.194748, 0, 0.194748, 0.980853, 0, -1.51354, 6.58879)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Marker3D/Camera3D"]
+metadata/_edit_lock_ = true
+
+[node name="boat" parent="." instance=ExtResource("2_c6lyy")]
+transform = Transform3D(-0.2, 0, -1.74846e-08, -4.30279e-11, 0.199999, 0.000492182, 1.74845e-08, 0.000492182, -0.199999, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.365703, 0.314106, -0.406656)
+shape = SubResource("BoxShape3D_3ujua")
