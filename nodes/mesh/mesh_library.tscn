@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxno4urktftn5"]
+
+[ext_resource type="Shader" uid="uid://b0ar7tw7tnarv" path="res://nodes/mesh/water_shader.tres" id="1_l48m5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sjti1"]
+render_priority = 0
+shader = ExtResource("1_l48m5")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_cfyus"]
+lightmap_size_hint = Vector2i(400, 400)
+material = SubResource("ShaderMaterial_sjti1")
+size = Vector2(10, 10)
+subdivide_width = 20
+subdivide_depth = 20
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fe8kh"]
+points = PackedVector3Array(-5, 0, -5, -5, 0, 4.99902, 4.99902, 0, -5, 4.99902, 0, 4.99902)
+
+[node name="MeshLibrary" type="Node3D"]
+
+[node name="Water" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_cfyus")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Water"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Water/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_fe8kh")

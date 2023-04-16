@@ -118,18 +118,15 @@ albedo_texture = ExtResource("4_qmwem")
 [node name="boat" type="Node3D"]
 transform = Transform3D(-0.2, 0, -1.74846e-08, 0, 0.2, 0, 1.74846e-08, 0, -0.2, 0, 0, 0)
 
-[node name="boat2" type="Node3D" parent="."]
-transform = Transform3D(1.45801, -0.0346563, 0.0319491, 0.0354425, 1.4579, -0.0359985, -0.0310747, 0.0367559, 1.45798, 2.214, 1.57316, -1.00459)
-
-[node name="Cube" type="MeshInstance3D" parent="boat2"]
-transform = Transform3D(0, 0, -1.68262, 0, 0.670402, 0, 4.18816, 0, 0, -3.0062, 0, 2.16397)
+[node name="Cube" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.133808, -0.0232337, -2.45328, -0.150767, 0.977379, -0.0596363, 6.10625, 0.0246412, 0.0522869, 0.0230266, 1.38871, 1.79732)
 mesh = SubResource("ArrayMesh_sx5hk")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_vr8uy")
 surface_material_override/1 = SubResource("StandardMaterial3D_njrkv")
 
-[node name="Cube001" type="MeshInstance3D" parent="boat2"]
-transform = Transform3D(1.52457, 0, 0, 0, 0.0379403, 0, 0, 0, 0.317824, -2.9927, 0.38405, -0.372537)
+[node name="Cube001" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.22284, -0.00131487, 0.0101542, 0.0540346, 0.0553132, -0.0114412, -0.0473756, 0.00139453, 0.463381, -0.0516385, 2.04041, -1.88716)
 mesh = SubResource("ArrayMesh_sae2m")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_2v0wk")

@@ -6,7 +6,7 @@ const JUMP_VELOCITY = 4.5
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
+@export var rotation_speed:float = SPEED
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -21,9 +21,9 @@ func _physics_process(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	if Input.is_action_pressed("ui_left"):
-		rotation.y += 2 * delta
+		rotation.y += 2 * rotation_speed * delta
 	if Input.is_action_pressed("ui_right"):
-		rotation.y -= 2 * delta
+		rotation.y -= 2 * rotation_speed * delta
 	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
