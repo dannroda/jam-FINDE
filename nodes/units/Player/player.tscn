@@ -10,7 +10,6 @@ data = PackedVector3Array(-0.6718, -1.729, 0, -1.0076, -1.0156, 0.4819, -0.6718,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.418016, -0.0216145, 0.22638)
 platform_on_leave = 1
 script = ExtResource("1_dsf25")
-rotation_speed = 2.0
 
 [node name="boat" parent="." instance=ExtResource("2_c6lyy")]
 transform = Transform3D(-0.2, 0, -1.74846e-08, -4.30279e-11, 0.199999, 0.000492182, 1.74845e-08, 0.000492182, -0.199999, 0.381697, 0, 0.798575)
@@ -18,5 +17,18 @@ transform = Transform3D(-0.2, 0, -1.74846e-08, -4.30279e-11, 0.199999, 0.0004921
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(-0.0267617, 0.00464673, 0.490655, -0.027148, 0.195487, -0.0119015, -1.22132, -0.00444717, -0.0104867, 0.377091, 0.511175, 0.439797)
 shape = SubResource("ConcavePolygonShape3D_6aas6")
+
+[node name="Marker3D" type="Marker3D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Camera3D" type="Camera3D" parent="Marker3D"]
+transform = Transform3D(1, 0, 0, 0, 0.9373, 0.348523, 0, -0.348523, 0.9373, 0, 2.14783, 4.14413)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Marker3D/Camera3D"]
+visible = false
+metadata/_edit_lock_ = true
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.11668, 0)
 
 [editable path="boat"]
