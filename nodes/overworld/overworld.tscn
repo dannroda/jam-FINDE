@@ -1,27 +1,35 @@
-[gd_scene load_steps=5 format=3 uid="uid://covohbva0p0he"]
+[gd_scene load_steps=6 format=3 uid="uid://covohbva0p0he"]
 
 [ext_resource type="Script" path="res://nodes/overworld/overworld.gd" id="1_oumpr"]
-[ext_resource type="MeshLibrary" uid="uid://bwowwniv14sgs" path="res://nodes/mesh/overworld_mesh_libray.tres" id="2_ysyon"]
+[ext_resource type="MeshLibrary" uid="uid://cn0t33imym4wl" path="res://nodes/mesh/library.meshlib" id="3_0a8kx"]
 [ext_resource type="PackedScene" uid="uid://3jg7grbr7iuu" path="res://nodes/units/Player/player.tscn" id="3_8nbuf"]
 [ext_resource type="PackedScene" uid="uid://bxmqe7bo5rfrx" path="res://nodes/units/enemy.tscn" id="3_342jx"]
+[ext_resource type="PackedScene" uid="uid://cwoj8rrxdpvl" path="res://nodes/modifiers/water_movement_col.tscn" id="5_16l0m"]
 
 [node name="Overworld" type="Node3D"]
 script = ExtResource("1_oumpr")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -3, 30, 0)
 
 [node name="enemy" parent="." instance=ExtResource("3_342jx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.30166, -0.244057, -8)
 
 [node name="GridMap" type="GridMap" parent="."]
-mesh_library = ExtResource("2_ysyon")
+mesh_library = ExtResource("3_0a8kx")
 cell_size = Vector3(10, 10, 10)
 cell_center_y = false
 data = {
-"cells": PackedInt32Array(0, 65535, 0, 0, 0, 0, 65535, 65535, 0, 65535, 65534, 0, 65535, 65533, 0, 65535, 65532, 0, 65535, 65531, 0, 0, 65531, 0, 0, 65532, 0, 0, 65533, 0, 0, 65534, 0, 65535, 0, 0, 65534, 65531, 0, 65534, 65532, 0, 65534, 65533, 0, 65534, 65534, 0, 65534, 65535, 0, 65534, 0, 0, 1, 65535, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 65535, 1, 1, 65533, 1, 1, 65534, 1, 1, 65533, 0, 1, 65533, 65531, 1, 65533, 65532, 1, 65533, 65533, 1, 65533, 65534, 1, 65533, 65535, 1, 1, 65531, 1, 1, 65532, 1, 1, 65533, 1, 1, 65534, 1, 65533, 65530, 1, 65534, 65530, 1, 65535, 65530, 1, 0, 65530, 1, 1, 65530, 1)
+"cells": PackedInt32Array(0, 0, 0, 0, 65535, 0, 65535, 65535, 0, 65535, 0, 0, 65534, 65534, 0, 65535, 65534, 0, 0, 65534, 0, 1, 65534, 0, 1, 65535, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 65535, 1, 0, 65534, 1, 0, 65534, 65535, 0, 65533, 1, 0, 65533, 0, 0, 65533, 65535, 0, 65533, 65534, 0, 1, 65533, 1, 0, 65533, 1, 65535, 65533, 1, 65534, 65533, 1, 65532, 65533, 1, 65533, 65533, 1, 65532, 65534, 1, 65532, 65535, 1, 65532, 0, 1, 65532, 1, 1, 65532, 2, 1, 65533, 2, 1, 65534, 2, 1, 65535, 2, 1, 0, 2, 1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 0, 1, 2, 65533, 1, 2, 65534, 1, 2, 65535, 1, 65534, 0, 0, -3, 1, 3, -3, 0, 3, -3, 65535, 3, -3, 65534, 3, -2, 65534, 3, -1, 65534, 3, -65536, 65534, 3, -65535, 65534, 3, -65534, 65534, 3, -65534, 65535, 3, -65534, 0, 3, -65534, 1, 3, -65535, 1, 3, -65536, 1, 3, -1, 1, 3, -2, 1, 3, -2, 0, 3, -2, 65535, 3, -1, 65535, 3, -65536, 65535, 3, -65536, 0, 3, -1, 0, 3, -65535, 0, 3, -65535, 65535, 3, -65535, 65533, 3, -65536, 65533, 3, -4, 65534, 3, -4, 65533, 3, -3, 65533, 3, -2, 65533, 3, -1, 65533, 3, -65534, 65533, 3, -65533, 65534, 3, -65533, 65535, 3, -65534, 2, 3, -65535, 2, 3, -65536, 2, 3, -1, 2, 3, -2, 2, 3, -3, 2, 3, -4, 0, 3, -4, 65535, 3, -4, 1, 3, -4, 2, 3)
 }
-metadata/_editor_floor_ = Vector3(0, 0, 0)
+metadata/_editor_floor_ = Vector3(0, -1, 0)
 
 [node name="Player" parent="." instance=ExtResource("3_8nbuf")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.021615, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.97838, 2)
 
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 13, 0)
+[node name="WaterMovement" parent="." instance=ExtResource("5_16l0m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 5)
+
+[connection signal="body_entered" from="WaterMovement" to="Player" method="_on_water_movement_body_entered"]
+[connection signal="body_exited" from="WaterMovement" to="Player" method="_on_water_movement_body_exited"]
+[connection signal="body_shape_entered" from="WaterMovement" to="." method="_on_water_movement_body_shape_entered"]
