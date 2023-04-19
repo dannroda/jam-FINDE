@@ -30,3 +30,5 @@ func two_damage():
 		buque_mesh.set_surface_override_material(0,materials[2])
 func three_damage():
 	get_parent().get_node('Collision').disabled = true
+	await get_tree().create_timer(1).timeout
+	queue_free()
