@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://2eumhy6vbr7h" path="res://assets/models/REMOLCADOR/boat.tscn" id="3_8wn7j"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e8icx"]
-size = Vector3(0.981677, 2.90838, 0.649729)
+size = Vector3(0.981677, 2.90838, 0.320846)
 
 [node name="Player" type="CharacterBody3D"]
 process_mode = 1
@@ -21,7 +21,7 @@ max_speed = 33.0
 metadata/_edit_lock_ = true
 
 [node name="Camera3D" type="Camera3D" parent="Marker3D"]
-transform = Transform3D(1, 0, 0, 0, 0.857464, 0.514544, 0, -0.514544, 0.857464, 0, 7.44646, 12.7608)
+transform = Transform3D(1, 0, 0, 0, 0.995623, 0.0934649, 0, -0.0934649, 0.995623, 0, 2.60272, 19.3139)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Marker3D/Camera3D"]
 visible = false
@@ -30,8 +30,8 @@ metadata/_edit_lock_ = true
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.386583, 2.11668, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.387391, 0.0152309)
+[node name="Collision" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.00369453, -0.484158, 0.00264087)
 shape = SubResource("BoxShape3D_e8icx")
 
 [node name="Buque" parent="." instance=ExtResource("2_72ysq")]

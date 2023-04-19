@@ -185,7 +185,7 @@ mesh = SubResource("PlaneMesh_0hyae")
 shape = SubResource("ConvexPolygonShape3D_xwefk")
 
 [node name="Boya" type="MeshInstance3D" parent="."]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 9.24524, 1.68147, -10.9127)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 9.24524, 4.48238, -10.9127)
 mesh = SubResource("ArrayMesh_yoqg2")
 surface_material_override/0 = SubResource("StandardMaterial3D_2foip")
 

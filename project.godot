@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Jam Finde"
-run/main_scene="res://nodes/overworld/overworld.tscn"
+run/main_scene="res://nodes/Scenes/MainScene.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
 

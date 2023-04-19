@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://bjyleavirnk5x"]
+
+[ext_resource type="Script" path="res://nodes/Scenes/MainScene.gd" id="1_1xw87"]
+[ext_resource type="MeshLibrary" uid="uid://cn0t33imym4wl" path="res://nodes/mesh/library.meshlib" id="1_abd7j"]
+[ext_resource type="Texture2D" uid="uid://bjoraq6f7n7vh" path="res://icon.svg" id="1_cfwiw"]
+[ext_resource type="PackedScene" uid="uid://3jg7grbr7iuu" path="res://nodes/units/Player/player.tscn" id="2_rc55g"]
+
+[node name="MainScene" type="Node3D"]
+script = ExtResource("1_1xw87")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Menu" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/HBoxContainer/Menu"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+text = "Start"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Info" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HBoxContainer/Info"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture = ExtResource("1_cfwiw")
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/Info"]
+layout_mode = 2
+text = "GameName/Logo"
+horizontal_alignment = 1
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Node3D" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="Node3D"]
+transform = Transform3D(-0.749141, 0, 0.662411, 0, 1, 0, -0.662411, 0, -0.749141, 3.18337, 2.05685, -1.06133)
+
+[node name="GridMap" type="GridMap" parent="Node3D"]
+mesh_library = ExtResource("1_abd7j")
+data = {
+"cells": PackedInt32Array(0, 0, 0, 65531, 0, 0, 0, 65531, 0, 65531, 65531, 0, 65531, 5, 0, 0, 5, 0, 5, 65531, 0, 5, 0, 0, 5, 5, 0)
+}
+
+[node name="Player" parent="Node3D" instance=ExtResource("2_rc55g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.418016, 1.8459, 0.22638)
+
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/Menu/Button" to="." method="_on_button_pressed"]

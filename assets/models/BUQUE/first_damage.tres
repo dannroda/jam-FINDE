@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" load_steps=6 format=3 uid="uid://gryxlabgpfb8"]
+
+[ext_resource type="Texture2D" uid="uid://dr4lrraogqh23" path="res://assets/models/BUQUE/texturasdaño1/buquemesh_dañocarga1_BaseColor.tga" id="1_4vguv"]
+[ext_resource type="Texture2D" uid="uid://boxlkv3uqucja" path="res://assets/models/BUQUE/texturasdaño1/buquemesh_dañocarga1_AO.tga" id="2_ir5iv"]
+[ext_resource type="Texture2D" uid="uid://cfgwv7da71q1x" path="res://assets/models/BUQUE/texturasdaño1/buquemesh_dañocarga1_Height.tga" id="3_8s75g"]
+[ext_resource type="Texture2D" uid="uid://ct1rib1yj7a3v" path="res://assets/models/BUQUE/texturasdaño1/buquemesh_dañocarga1_Normal.tga" id="4_rbwna"]
+[ext_resource type="Texture2D" uid="uid://cqmt4rwqktfb6" path="res://assets/models/BUQUE/texturasdaño1/buquemesh_dañocarga1_Roughness.tga" id="5_x7e68"]
+
+[resource]
+albedo_texture = ExtResource("1_4vguv")
+roughness_texture = ExtResource("5_x7e68")
+normal_enabled = true
+normal_texture = ExtResource("4_rbwna")
+ao_enabled = true
+ao_texture = ExtResource("2_ir5iv")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_8s75g")

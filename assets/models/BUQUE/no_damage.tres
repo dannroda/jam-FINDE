@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" load_steps=5 format=3 uid="uid://ceqwlma1pjkfd"]
+
+[ext_resource type="Texture2D" uid="uid://dagi2y5pjv4t3" path="res://assets/models/BUQUE/texturasdaño0/buquemesh_daño0_BaseColor.tga" id="1_48jpw"]
+[ext_resource type="Texture2D" uid="uid://dwqusn8ijrhoi" path="res://assets/models/BUQUE/texturasdaño0/buquemesh_daño0_AO.tga" id="2_ny5tc"]
+[ext_resource type="Texture2D" uid="uid://dbgqe3r5x7mlv" path="res://assets/models/BUQUE/texturasdaño0/buquemesh_daño0_Height.tga" id="3_wt654"]
+[ext_resource type="Texture2D" uid="uid://c1stxo2tfcpqn" path="res://assets/models/BUQUE/texturasdaño0/buquemesh_daño0_Normal.tga" id="4_pel42"]
+
+[resource]
+albedo_texture = ExtResource("1_48jpw")
+normal_enabled = true
+normal_texture = ExtResource("4_pel42")
+ao_enabled = true
+ao_texture = ExtResource("2_ny5tc")
+heightmap_enabled = true
+heightmap_texture = ExtResource("3_wt654")

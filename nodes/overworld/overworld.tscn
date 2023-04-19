@@ -11,6 +11,12 @@
 [node name="Overworld" type="Node3D"]
 script = ExtResource("1_oumpr")
 
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(0.999868, 3.73877e-08, -0.0162484, 0.0114893, 0.707107, 0.707013, 0.0114894, -0.707107, 0.707013, 2.80176, 10.8458, 17.2423)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -3, 30, 0)
+
 [node name="enemy" parent="." instance=ExtResource("3_342jx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.30166, -0.244057, -8)
 
@@ -25,9 +31,6 @@ metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="Player" parent="." instance=ExtResource("3_8nbuf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.97838, 2)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -3, 30, 0)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.0103147, 0.999947, 0, -0.999947, 0.0103147, 0, 22.1529, 0)
