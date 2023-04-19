@@ -7,11 +7,15 @@ extends CharacterBody3D
 @export_range(0.0,10.0,1.0) var decrease_speed_by:float = 3.0
 @export_range(0,100,10) var life:int = 100
 
-signal change_direction
+signal change_direction(direction,on_current)
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var current_speed:float = min_speed
 var current_direction
 var on_current:bool = false
+enum possbile_direction {UP,DOWN,LEFT,RIGHT}
+var on_box_current:possbile_direction
+func _ready():
+	change_direction.connect(force_move)
 @onready var default_speed_increase = increase_speed_by
 func _physics_process(delta):
 	# Add the gravity.
@@ -54,18 +58,31 @@ func update_direction():
 #		print($RayCast3D.get_collider())
 
 func _process(delta):
+#	if on_box_current:
 	pass
-#	print(on_current)
-#	print(is_processing_input())
-func _on_water_movement_body_entered(body):
+func force_move(box_direction = null,current:bool = false):
 	print('entra')
-	on_current = true
-#	velocity = move_toward(velocity, velocity + Vector3.FORWARD, current_speed * 10)
-#	if velocity.x <= 0:
-	velocity.x = move_toward(velocity.x, abs(velocity.x) * -2, current_speed * 10)
-#	if velocity.x >= 0:
-#	velocity.x = move_toward(velocity.x, abs(velocity.x) * 2, current_speed * 10)
-#	velocity.z = move_toward(velocity.z, velocity.z * 20, current_speed * 20)
+	print(box_direction)
+	on_box_current = box_direction
+	on_current = current
+	match on_box_current:
+		possbile_direction.RIGHT:
+#			velocity.x += 20
+			velocity.x = move_toward(velocity.x, abs(velocity.x) * 3, current_speed * 10)
+		possbile_direction.LEFT:
+#			velocity.x -= 20
+			velocity.x = move_toward(velocity.x, abs(velocity.x) * -3, current_speed * 10)
+		possbile_direction.DOWN:
+#			velocity.z += 20
+			velocity.z = move_toward(velocity.z, abs(velocity.z) * 3, current_speed * 10)
+		possbile_direction.UP:
+#			velocity.z -= 20
+			velocity.z = move_toward(velocity.z, abs(velocity.z) * -3, current_speed * 10)
+#	on_current = false
+	
 
-func _on_water_movement_body_exited(body):
-	on_current = false
+#	if velocity.x <= 0:
+#	velocity.x = move_toward(velocity.x, abs(velocity.x) * -2, current_speed * 10)
+#	if velocity.x >= 0:
+#	velocity.x = move_towa/rd(velocity.x, abs(velocity.x) * 2, current_speed * 10)
+#	velocity.z = move_toward(velocity.z, velocity.z * 20, current_speed * 20)

@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqye1sqvu64dp"
-path.s3tc="res://.godot/imported/Green-Up-Arrow.svg.png-a6096325c6aedb84d35d7db3f18cad84.s3tc.ctex"
+uid="uid://b8lw1n17lhj6e"
+path.s3tc="res://.godot/imported/arrow-up.png-56985de39ce66314a30d3f9553e6f9c1.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/textures/Green-Up-Arrow.svg.png"
-dest_files=["res://.godot/imported/Green-Up-Arrow.svg.png-a6096325c6aedb84d35d7db3f18cad84.s3tc.ctex"]
+source_file="res://assets/textures/arrow-up.png"
+dest_files=["res://.godot/imported/arrow-up.png-56985de39ce66314a30d3f9553e6f9c1.s3tc.ctex"]
 
 [params]
 

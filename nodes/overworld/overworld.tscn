@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://covohbva0p0he"]
+[gd_scene load_steps=7 format=3 uid="uid://covohbva0p0he"]
 
 [ext_resource type="Script" path="res://nodes/overworld/overworld.gd" id="1_oumpr"]
 [ext_resource type="MeshLibrary" uid="uid://cn0t33imym4wl" path="res://nodes/mesh/library.meshlib" id="3_0a8kx"]
 [ext_resource type="PackedScene" uid="uid://3jg7grbr7iuu" path="res://nodes/units/Player/player.tscn" id="3_8nbuf"]
 [ext_resource type="PackedScene" uid="uid://bxmqe7bo5rfrx" path="res://nodes/units/enemy.tscn" id="3_342jx"]
 [ext_resource type="PackedScene" uid="uid://cwoj8rrxdpvl" path="res://nodes/modifiers/water_movement_col.tscn" id="5_16l0m"]
+[ext_resource type="Script" path="res://nodes/overworld/CurrentModifiers.gd" id="5_qrkb7"]
 
 [node name="Overworld" type="Node3D"]
 script = ExtResource("1_oumpr")
@@ -27,9 +28,24 @@ metadata/_editor_floor_ = Vector3(0, -1, 0)
 [node name="Player" parent="." instance=ExtResource("3_8nbuf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.97838, 2)
 
-[node name="WaterMovement" parent="." instance=ExtResource("5_16l0m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, 5)
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.0103147, 0.999947, 0, -0.999947, 0.0103147, 0, 22.1529, 0)
 
-[connection signal="body_entered" from="WaterMovement" to="Player" method="_on_water_movement_body_entered"]
-[connection signal="body_exited" from="WaterMovement" to="Player" method="_on_water_movement_body_exited"]
-[connection signal="body_shape_entered" from="WaterMovement" to="." method="_on_water_movement_body_shape_entered"]
+[node name="CurrentModifiers" type="Node3D" parent="."]
+script = ExtResource("5_qrkb7")
+player_node = NodePath("../Player")
+
+[node name="WaterMovementRight" parent="CurrentModifiers" instance=ExtResource("5_16l0m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, 11)
+
+[node name="WaterMovementDown" parent="CurrentModifiers" instance=ExtResource("5_16l0m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -4)
+direction = 1
+
+[node name="WaterMovementLeft" parent="CurrentModifiers" instance=ExtResource("5_16l0m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, -4)
+direction = 2
+
+[node name="WaterMovementUp" parent="CurrentModifiers" instance=ExtResource("5_16l0m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 5)
+direction = 0

@@ -1,9 +1,9 @@
 [gd_resource type="VisualShader" load_steps=6 format=3 uid="uid://cddff2dog0a22"]
 
-[ext_resource type="Texture2D" uid="uid://cqye1sqvu64dp" path="res://assets/textures/Green-Up-Arrow.svg.png" id="1_xyy3n"]
+[ext_resource type="Texture2D" uid="uid://c8tf4x1kofuas" path="res://assets/textures/arrow-rigth.png" id="1_p68cv"]
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_rtvk8"]
-texture = ExtResource("1_xyy3n")
+texture = ExtResource("1_p68cv")
 
 [sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_8bodr"]
 default_input_values = [1, Vector2(-0.2, 0), 2, Vector2(0, 0)]

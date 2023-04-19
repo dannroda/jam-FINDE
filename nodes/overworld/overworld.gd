@@ -7,6 +7,9 @@ extends Node3D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass
+#	var currents = $CurrentModifiers.get_children()
+#	for current in currents:
+#		current.body_entered.connect(_update_direction)
 ##	print(water_pink)
 ##	print($GridMap.mesh_library.get_item_shapes(water_pink))
 #	print(grid_mesh_lib.get_item_shapes(water_pink))
@@ -28,6 +31,6 @@ func _process(delta):
 		if player_cell == to_check:
 			print("same")
 
-
-func _on_water_movement_body_shape_entered(body_rid, body, body_shape_index, local_shape_index):
-	print(body,body_shape_index)
+func _update_direction(body):
+	print(body)
+#	$Player.change_direction.emit()

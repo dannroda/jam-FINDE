@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bdcgwr7ieyuqe" path="res://nodes/units/Player/boat.tscn" id="2_c6lyy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e8icx"]
-size = Vector3(1.20954, 3.34452, 0.285525)
+size = Vector3(1.20954, 3.34452, 0.505789)
 
 [node name="Player" type="CharacterBody3D"]
 process_mode = 1
@@ -33,10 +33,5 @@ metadata/_edit_lock_ = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.386583, 2.11668, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.235493, 0.511324)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.428404, 0.511324)
 shape = SubResource("BoxShape3D_e8icx")
-
-[node name="RayCast3D" type="RayCast3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.229995, 0.580899)
-debug_shape_custom_color = Color(1, 0.631373, 0, 1)
-debug_shape_thickness = 5
