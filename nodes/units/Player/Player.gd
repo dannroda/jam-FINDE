@@ -5,18 +5,21 @@ extends CharacterBody3D
 @export_range(-3.0,50.0,2.0) var max_speed:float = 50
 @export_range(0.0,10.0,1.0) var increase_speed_by:float = 10.0
 @export_range(0.0,10.0,1.0) var decrease_speed_by:float = 3.0
-@export_range(0,100,10) var life:int = 100
 
 signal change_direction(direction,on_current)
+signal damage(amount)
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var current_speed:float = min_speed
 var current_direction
 var on_current:bool = false
 enum possbile_direction {UP,DOWN,LEFT,RIGHT}
 var on_box_current:possbile_direction
+@onready var life:int = 90
+@onready var buque = $Buque
+@onready var default_speed_increase = increase_speed_by
+
 func _ready():
 	change_direction.connect(force_move)
-@onready var default_speed_increase = increase_speed_by
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -38,6 +41,10 @@ func _physics_process(delta):
 	if is_on_wall():
 #		print("WALLL")
 		current_speed /= 5
+		velocity.x = move_toward(velocity.x, velocity.x - 200, current_speed * 10)
+		velocity.z = move_toward(velocity.z, velocity.z - 200, current_speed * 10)
+		
+		damage.emit(30)
 
 	if not on_current and current_direction and current_speed > min_speed:
 		current_speed -= decrease_speed_by * delta
@@ -88,3 +95,16 @@ func force_move(box_direction = null,current:bool = false):
 #	if velocity.x >= 0:
 #	velocity.x = move_towa/rd(velocity.x, abs(velocity.x) * 2, current_speed * 10)
 #	velocity.z = move_toward(velocity.z, velocity.z * 20, current_speed * 20)
+
+
+func _on_damage(amount):
+	life -= amount
+	match life:
+		90:
+			buque.no_damage()
+		60:
+			buque.one_damage()
+		30:
+			buque.two_damage()
+		0:
+			buque.three_damage()

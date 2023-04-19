@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://covohbva0p0he"]
+[gd_scene load_steps=9 format=3 uid="uid://covohbva0p0he"]
 
 [ext_resource type="Script" path="res://nodes/overworld/overworld.gd" id="1_oumpr"]
 [ext_resource type="MeshLibrary" uid="uid://cn0t33imym4wl" path="res://nodes/mesh/library.meshlib" id="3_0a8kx"]
@@ -8,8 +8,43 @@
 [ext_resource type="Script" path="res://nodes/overworld/CurrentModifiers.gd" id="5_qrkb7"]
 [ext_resource type="PackedScene" uid="uid://dqh1o1nlxfyoy" path="res://assets/models/BOYA/boya.tscn" id="7_5gaab"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4sitx"]
+bg_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [node name="Overworld" type="Node3D"]
 script = ExtResource("1_oumpr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+
+[node name="PlayerLife" type="ProgressBar" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+tooltip_text = "Life: "
+theme_override_styles/fill = SubResource("StyleBoxFlat_4sitx")
+max_value = 90.0
+value = 90.0
+show_percentage = false
+
+[node name="PlayerSpeed" type="ProgressBar" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+show_percentage = false
 
 [node name="Player" parent="." instance=ExtResource("3_8nbuf")]
 transform = Transform3D(-0.0145031, 0, 0.999895, 0, 1, 0, -0.999895, 0, -0.0145031, 7.32153, 0.590653, 9.33248)
@@ -57,3 +92,5 @@ direction = 0
 [node name="Obstacles" type="Node3D" parent="."]
 
 [node name="Boya" parent="Obstacles" instance=ExtResource("7_5gaab")]
+
+[connection signal="damage" from="Player" to="." method="_on_player_damage"]
