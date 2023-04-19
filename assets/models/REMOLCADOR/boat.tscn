@@ -1,0 +1,17 @@
+[gd_scene load_steps=6 format=3 uid="uid://2eumhy6vbr7h"]
+
+[ext_resource type="PackedScene" uid="uid://md0ajaly7xcw" path="res://assets/models/REMOLCADOR/remolcadormesh.fbx" id="1_ccs68"]
+[ext_resource type="Texture2D" uid="uid://befvkc8as2fvu" path="res://assets/models/REMOLCADOR/remolcador_BaseColor.tga" id="2_tk6xj"]
+[ext_resource type="Texture2D" uid="uid://7yyrg5pqk4lr" path="res://assets/models/REMOLCADOR/remolcador_AO.tga" id="3_g3rdo"]
+[ext_resource type="Texture2D" uid="uid://dscs2xmc0b2kb" path="res://assets/models/REMOLCADOR/remolcador_Roughness.tga" id="4_6w1a8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_febvo"]
+albedo_texture = ExtResource("2_tk6xj")
+roughness_texture = ExtResource("4_6w1a8")
+ao_enabled = true
+ao_texture = ExtResource("3_g3rdo")
+
+[node name="Boat" instance=ExtResource("1_ccs68")]
+
+[node name="boya2remolcador1" parent="RootNode" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_febvo")

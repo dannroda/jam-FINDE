@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://3jg7grbr7iuu"]
+[gd_scene load_steps=5 format=3 uid="uid://3jg7grbr7iuu"]
 
 [ext_resource type="Script" path="res://nodes/units/Player/Player.gd" id="1_dsf25"]
-[ext_resource type="PackedScene" uid="uid://bdcgwr7ieyuqe" path="res://nodes/units/Player/boat.tscn" id="2_c6lyy"]
+[ext_resource type="PackedScene" uid="uid://b8l3i2rg0pjlg" path="res://assets/models/BUQUE/buque.tscn" id="2_72ysq"]
+[ext_resource type="PackedScene" uid="uid://2eumhy6vbr7h" path="res://assets/models/REMOLCADOR/boat.tscn" id="3_8wn7j"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e8icx"]
-size = Vector3(1.20954, 3.34452, 0.505789)
+size = Vector3(0.981677, 2.90838, 0.649729)
 
 [node name="Player" type="CharacterBody3D"]
 process_mode = 1
@@ -16,14 +17,11 @@ platform_wall_layers = 1
 script = ExtResource("1_dsf25")
 max_speed = 33.0
 
-[node name="boat" parent="." instance=ExtResource("2_c6lyy")]
-transform = Transform3D(-0.2, 3.12895e-11, -3.01991e-08, -4.30279e-11, 0.199999, 0.000492183, 3.01991e-08, 0.000492183, -0.199999, -0.00488675, 0, 0.798575)
-
 [node name="Marker3D" type="Marker3D" parent="."]
 metadata/_edit_lock_ = true
 
 [node name="Camera3D" type="Camera3D" parent="Marker3D"]
-transform = Transform3D(1, 0, 0, 0, 0.9373, 0.348523, 0, -0.348523, 0.9373, 0, 2.14783, 4.14413)
+transform = Transform3D(1, 0, 0, 0, 0.857464, 0.514544, 0, -0.514544, 0.857464, 0, 7.44646, 12.7608)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Marker3D/Camera3D"]
 visible = false
@@ -33,5 +31,11 @@ metadata/_edit_lock_ = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.386583, 2.11668, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0.428404, 0.511324)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, -0.387391, 0.0152309)
 shape = SubResource("BoxShape3D_e8icx")
+
+[node name="Buque" parent="." instance=ExtResource("2_72ysq")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 8.66612)
+
+[node name="Boat" parent="." instance=ExtResource("3_8wn7j")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)

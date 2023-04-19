@@ -19,7 +19,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print(get_overlapping_bodies())
+#	print(get_overlapping_bodies())
 	pass
 
 

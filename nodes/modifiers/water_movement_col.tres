@@ -12,7 +12,7 @@ default_input_values = [1, Vector2(-0.2, 0), 2, Vector2(0, 0)]
 input_name = "time"
 
 [sub_resource type="VisualShaderNodeFloatConstant" id="VisualShaderNodeFloatConstant_y3wlq"]
-constant = 1.0
+constant = 0.6
 
 [resource]
 code = "shader_type spatial;
@@ -35,7 +35,7 @@ void fragment() {
 
 
 // FloatConstant:5
-	float n_out5p0 = 1.000000;
+	float n_out5p0 = 0.600000;
 
 
 // Output:0
@@ -45,7 +45,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-479.546, 39.1494)
+graph_offset = Vector2(73.3333, 146.667)
 nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_rtvk8")
 nodes/fragment/2/position = Vector2(-100, 100)
 nodes/fragment/3/node = SubResource("VisualShaderNodeUVFunc_8bodr")

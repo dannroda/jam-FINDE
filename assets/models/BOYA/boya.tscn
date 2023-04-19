@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://dqh1o1nlxfyoy"]
+
+[ext_resource type="PackedScene" uid="uid://cif5g572c084p" path="res://assets/models/BOYA/boyamesh.fbx" id="1_tm1df"]
+[ext_resource type="Texture2D" uid="uid://bryudcs50pm1e" path="res://assets/models/BOYA/boya_BaseColor.tga" id="2_2mwir"]
+[ext_resource type="Texture2D" uid="uid://bgiwqc3rumc2o" path="res://assets/models/BOYA/boya_Metallic.tga" id="3_bdl8m"]
+[ext_resource type="Texture2D" uid="uid://0nb5kbwcique" path="res://assets/models/BOYA/boya_Roughness.tga" id="4_yjk2o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8qc0g"]
+albedo_texture = ExtResource("2_2mwir")
+metallic = 1.0
+metallic_texture = ExtResource("3_bdl8m")
+roughness_texture = ExtResource("4_yjk2o")
+ao_enabled = true
+ao_texture = ExtResource("2_2mwir")
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_5e3q6"]
+points = PackedVector3Array(0.109973, 0.434164, 0.0812638, 0.0679647, -0.448203, 0.0252384, 0.0119173, -0.0980115, -0.114803, -0.0160241, 0.448203, -0.0167478, -0.100068, -0.448203, 0.0952592, -0.100068, -0.448203, -0.0867905, -0.0160241, 0.434164, 0.109298, 0.138024, 0.392134, 0.0112211, 0.039941, -0.448203, 0.0952592, 0.039941, -0.448203, -0.0867905, -0.100068, -0.0980115, -0.100786, -0.142103, -0.0980115, 0.053273, 0.138024, 0.406173, 0.0672465, -0.142103, -0.0980115, -0.0307651, -0.0860558, -0.0980115, 0.109298, 0.0259292, -0.0980115, 0.109298, 0.0819491, -0.0980115, -0.0587778, -0.0580596, -0.0980115, -0.114803, 0.0119173, 0.448203, -0.0167478, -0.128091, -0.0980115, -0.0727732, -0.114079, -0.0980115, 0.0952592, 0.039941, -0.0980115, -0.100786, 0.0119173, 0.434164, 0.109298, 0.138024, 0.350104, 0.0112211, 0.0679647, -0.448203, 0.0392338, 0.138024, 0.434164, 0.0392338, -0.0300359, 0.392134, 0.053273, 0.138024, 0.364143, 0.053273, 0.0119173, 0.448203, 0.0252384, 0.109973, 0.406173, 0.0812638, 0.138024, 0.434164, 0.0672465, 0.138024, 0.350104, 0.0392338)
+
+[node name="Boya" instance=ExtResource("1_tm1df")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 1.65512, 0)
+
+[node name="boya2boyaambiental" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_8qc0g")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="RootNode/boya2boyaambiental" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RootNode/boya2boyaambiental/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_5e3q6")

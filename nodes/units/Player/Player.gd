@@ -65,6 +65,8 @@ func force_move(box_direction = null,current:bool = false):
 	print(box_direction)
 	on_box_current = box_direction
 	on_current = current
+	if current_speed < 0:
+		current_speed += increase_speed_by * 10
 	match on_box_current:
 		possbile_direction.RIGHT:
 #			velocity.x += 20

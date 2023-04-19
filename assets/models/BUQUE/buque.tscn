@@ -1,0 +1,21 @@
+[gd_scene load_steps=7 format=3 uid="uid://b8l3i2rg0pjlg"]
+
+[ext_resource type="PackedScene" uid="uid://bbkxml248g3c7" path="res://assets/models/BUQUE/buquemesh.fbx" id="1_4hv44"]
+[ext_resource type="Texture2D" uid="uid://dagi2y5pjv4t3" path="res://assets/models/BUQUE/texturasdaño0/buquemesh_daño0_BaseColor.tga" id="2_77mlg"]
+[ext_resource type="Texture2D" uid="uid://dwqusn8ijrhoi" path="res://assets/models/BUQUE/texturasdaño0/buquemesh_daño0_AO.tga" id="3_os4qf"]
+[ext_resource type="Texture2D" uid="uid://dbgqe3r5x7mlv" path="res://assets/models/BUQUE/texturasdaño0/buquemesh_daño0_Height.tga" id="4_6o2n6"]
+[ext_resource type="Texture2D" uid="uid://c1stxo2tfcpqn" path="res://assets/models/BUQUE/texturasdaño0/buquemesh_daño0_Normal.tga" id="5_axjrv"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_04fvv"]
+albedo_texture = ExtResource("2_77mlg")
+normal_enabled = true
+normal_texture = ExtResource("5_axjrv")
+ao_enabled = true
+ao_texture = ExtResource("3_os4qf")
+heightmap_enabled = true
+heightmap_texture = ExtResource("4_6o2n6")
+
+[node name="Buque" instance=ExtResource("1_4hv44")]
+
+[node name="BUQUEBUQUE" parent="RootNode" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_04fvv")

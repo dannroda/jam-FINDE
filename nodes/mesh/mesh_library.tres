@@ -3,11 +3,11 @@
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_fmy37"]
 parameter_name = "ColorParameter"
 default_value_enabled = true
-default_value = Color(0.515585, 0.0507319, 4.81308e-08, 1)
+default_value = Color(0.688883, 0.0836214, 9.62615e-08, 1)
 
 [resource]
 code = "shader_type spatial;
-uniform vec4 ColorParameter : source_color = vec4(0.515585, 0.050732, 0.000000, 1.000000);
+uniform vec4 ColorParameter : source_color = vec4(0.688883, 0.083621, 0.000000, 1.000000);
 
 
 
@@ -22,7 +22,7 @@ void fragment() {
 
 }
 "
-graph_offset = Vector2(-131.041, 116.441)
+graph_offset = Vector2(-99.696, 124.032)
 nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_fmy37")
 nodes/fragment/2/position = Vector2(0, 120)
 nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0)
