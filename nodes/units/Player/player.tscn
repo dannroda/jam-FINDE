@@ -24,7 +24,6 @@ metadata/_edit_lock_ = true
 transform = Transform3D(1, 0, 0, 0, 0.813121, 0.582094, 0, -0.582094, 0.813121, 0, 5.87092, 17.4716)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Marker3D/Camera3D"]
-visible = false
 metadata/_edit_lock_ = true
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]

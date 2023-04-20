@@ -30,7 +30,7 @@ func _physics_process(delta):
 	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	var direction = (transform.basis * Vector3(0, 0, input_dir.y)).normalized()
 	var steer_direction = (transform.basis * Vector3(input_dir.x, 0, 0)).normalized()
-	if not on_current and direction and Input.is_action_pressed("ui_up"):
+	if not on_current and not is_on_wall() and direction and Input.is_action_pressed("ui_up"):
 		velocity.z = direction.z * current_speed
 		velocity.x = direction.x * current_speed
 		current_direction = direction
@@ -39,12 +39,17 @@ func _physics_process(delta):
 	if current_speed < 0:
 		current_speed = 0
 	if is_on_wall():
-#		print("WALLL")
-		current_speed /= 5
-		velocity.x = move_toward(velocity.x, velocity.x - 200, current_speed * 10)
-		velocity.z = move_toward(velocity.z, velocity.z - 200, current_speed * 10)
-		
+		velocity.z = current_direction.z * -5
+		velocity.x = current_direction.x * -5
+		current_speed = 0
+		move_and_slide()
 		damage.emit(30)
+		await get_tree().create_timer(1).timeout
+		print("WALLL")
+		velocity.x = move_toward(velocity.x, 0, 5)
+		velocity.z = move_toward(velocity.z, 0, 5)
+		move_and_slide()
+		
 
 	if not on_current and current_direction and current_speed > min_speed:
 		current_speed -= decrease_speed_by * delta
@@ -99,6 +104,7 @@ func force_move(box_direction = null,current:bool = false):
 
 func _on_damage(amount):
 	life -= amount
+
 	match life:
 		90:
 			buque.no_damage()
