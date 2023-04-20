@@ -22,10 +22,15 @@ theme_override_constants/separation = 0
 layout_mode = 2
 alignment = 1
 
-[node name="Button" type="Button" parent="CanvasLayer/HBoxContainer/Menu"]
+[node name="Play" type="Button" parent="CanvasLayer/HBoxContainer/Menu"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
 text = "Start"
+
+[node name="Quit" type="Button" parent="CanvasLayer/HBoxContainer/Menu"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+text = "Quit"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
@@ -62,4 +67,8 @@ data = {
 [node name="Player" parent="Node3D" instance=ExtResource("2_rc55g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.418016, 1.8459, 0.22638)
 
-[connection signal="pressed" from="CanvasLayer/HBoxContainer/Menu/Button" to="." method="_on_button_pressed"]
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 22, 0)
+
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/Menu/Play" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/HBoxContainer/Menu/Quit" to="." method="_on_quit_pressed"]
