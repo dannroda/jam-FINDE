@@ -1,12 +1,42 @@
-[gd_scene load_steps=9 format=3 uid="uid://covohbva0p0he"]
+[gd_scene load_steps=16 format=3 uid="uid://covohbva0p0he"]
 
 [ext_resource type="Script" path="res://nodes/overworld/overworld.gd" id="1_oumpr"]
+[ext_resource type="Shader" path="res://assets/shaders/sky/clouds.gdshader" id="2_44rkp"]
 [ext_resource type="MeshLibrary" uid="uid://cn0t33imym4wl" path="res://nodes/mesh/library.meshlib" id="3_0a8kx"]
+[ext_resource type="Texture2D" uid="uid://dfkye0uf4i6w1" path="res://assets/shaders/sky/weather.bmp" id="3_0m2oe"]
 [ext_resource type="PackedScene" uid="uid://3jg7grbr7iuu" path="res://nodes/units/Player/player.tscn" id="3_8nbuf"]
 [ext_resource type="PackedScene" uid="uid://bxmqe7bo5rfrx" path="res://nodes/units/enemy.tscn" id="3_342jx"]
+[ext_resource type="CompressedTexture3D" uid="uid://dbfbysid168mx" path="res://assets/shaders/sky/perlworlnoise.tga" id="3_skc2e"]
 [ext_resource type="PackedScene" uid="uid://cwoj8rrxdpvl" path="res://nodes/modifiers/water_movement_col.tscn" id="5_16l0m"]
 [ext_resource type="Script" path="res://nodes/overworld/CurrentModifiers.gd" id="5_qrkb7"]
+[ext_resource type="CompressedTexture3D" uid="uid://c4dp6g6gouj2b" path="res://assets/shaders/sky/worlnoise.bmp" id="5_tggvu"]
 [ext_resource type="PackedScene" uid="uid://dqh1o1nlxfyoy" path="res://assets/models/BOYA/boya.tscn" id="7_5gaab"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_50bxm"]
+shader = ExtResource("2_44rkp")
+shader_parameter/_density = 0.05
+shader_parameter/cloud_coverage = 0.25
+shader_parameter/_time_scale = 1.0
+shader_parameter/_time_offset = 0.0
+shader_parameter/rayleigh = 2.0
+shader_parameter/rayleigh_color = Color(0.26, 0.41, 0.58, 1)
+shader_parameter/mie = 0.005
+shader_parameter/mie_eccentricity = 0.8
+shader_parameter/mie_color = Color(0.63, 0.77, 0.92, 1)
+shader_parameter/turbidity = 10.0
+shader_parameter/sun_disk_scale = 1.0
+shader_parameter/ground_color = Color(1, 1, 1, 1)
+shader_parameter/exposure = 0.1
+shader_parameter/worlnoise = ExtResource("5_tggvu")
+shader_parameter/perlworlnoise = ExtResource("3_skc2e")
+shader_parameter/weathermap = ExtResource("3_0m2oe")
+
+[sub_resource type="Sky" id="Sky_5xiax"]
+sky_material = SubResource("ShaderMaterial_50bxm")
+
+[sub_resource type="Environment" id="Environment_kaa5m"]
+background_mode = 2
+sky = SubResource("Sky_5xiax")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4sitx"]
 bg_color = Color(1, 0, 0, 1)
@@ -18,14 +48,17 @@ corner_radius_bottom_left = 5
 [node name="Overworld" type="Node3D"]
 script = ExtResource("1_oumpr")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_kaa5m")
+
 [node name="Player" parent="." instance=ExtResource("3_8nbuf")]
-transform = Transform3D(-0.0145031, 0, 0.999895, 0, 1, 0, -0.999895, 0, -0.0145031, 7.32153, 0.590653, 9.33248)
+transform = Transform3D(-0.0145031, 0, 0.999895, 0, 1, 0, -0.999895, 0, -0.0145031, 4.24639, 0.726305, 9.33248)
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -3, 30, 0)
 
 [node name="Camera3D2" type="Camera3D" parent="."]
-transform = Transform3D(0.999868, 6.99797e-08, -0.0162484, 0.00421163, 0.965822, 0.259172, 0.0156931, -0.259207, 0.965694, 10.4337, 1.29499, 11.6919)
+transform = Transform3D(0.999868, 7.64981e-08, -0.0162484, 0.00421163, 0.965822, 0.259173, 0.0156931, -0.259207, 0.965694, 10.4337, 1.29499, 11.6919)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
@@ -63,7 +96,7 @@ mesh_library = ExtResource("3_0a8kx")
 cell_size = Vector3(10, 10, 10)
 cell_center_y = false
 data = {
-"cells": PackedInt32Array(0, 0, 0, 0, 65535, 0, 65535, 65535, 0, 65535, 0, 0, 65534, 65534, 0, 65535, 65534, 0, 0, 65534, 0, 1, 65534, 0, 1, 65535, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 65535, 1, 0, 65534, 1, 0, 65534, 65535, 0, 65533, 1, 0, 65533, 0, 0, 65533, 65535, 0, 65533, 65534, 0, 1, 65533, 1, 0, 65533, 1, 65535, 65533, 1, 65534, 65533, 1, 65532, 65533, 1, 65533, 65533, 1, 65532, 65534, 0, 65532, 65535, 0, 65532, 0, 0, 65532, 1, 0, 65532, 2, 1, 65533, 2, 1, 65534, 2, 1, 65535, 2, 1, 0, 2, 1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 0, 1, 2, 65533, 1, 2, 65534, 1, 2, 65535, 1, 65534, 0, 0, -65535, 1, 6, 65531, 65533, 1, 65530, 65533, 1, 65529, 65533, 1, 65528, 65533, 1, 65527, 65533, 1, 65526, 65533, 1, 65525, 65533, 1, 65524, 65533, 1, 65524, 65534, 1, 65524, 65535, 1, 65524, 0, 1, 65524, 1, 1, 65524, 2, 1, 65525, 2, 1, 65526, 2, 1, 65527, 2, 1, 65528, 2, 1, 65529, 2, 1, 65530, 2, 1, 65531, 2, 1, 65525, 65534, 0, 65526, 65534, 0, 65527, 65534, 0, 65528, 65534, 0, 65529, 65534, 0, 65530, 65534, 0, 65531, 65534, 0, 65531, 1, 0, 65530, 1, 0, 65529, 1, 0, 65528, 1, 0, 65527, 1, 0, 65526, 1, 0, 65525, 1, 0, 65525, 0, 0, 65525, 65535, 0, 65526, 65535, 0, 65527, 65535, 0, 65528, 65535, 0, 65529, 65535, 0, 65530, 65535, 0, 65526, 0, 0, 65527, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65531, 65535, 0)
+"cells": PackedInt32Array(0, 0, 0, 0, 65535, 0, 65535, 65535, 0, 65535, 0, 0, 65534, 65534, 0, 65535, 65534, 0, 0, 65534, 0, 1, 65534, 0, 1, 65535, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 65535, 1, 0, 65534, 65535, 0, 65533, 1, 0, 65533, 0, 0, 65533, 65535, 0, 65533, 65534, 0, 1, 65533, 1, 0, 65533, 1, 65535, 65533, 1, 65534, 65533, 1, 65532, 65533, 1, 65533, 65533, 1, 65532, 65534, 0, 65532, 65535, 0, 65532, 0, 0, 65532, 1, 0, 65532, 2, 1, 65533, 2, 1, 0, 2, 1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 0, 1, 2, 65533, 1, 2, 65534, 1, 2, 65535, 1, 65534, 0, 0, -65535, 1, 6, 65531, 65533, 1, 65530, 65533, 1, 65529, 65533, 1, 65528, 65533, 1, 65527, 65533, 1, 65526, 65533, 1, 65525, 65533, 1, 65524, 65533, 1, 65524, 65534, 1, 65524, 65535, 1, 65524, 0, 1, 65524, 1, 1, 65524, 2, 1, 65525, 2, 1, 65526, 2, 1, 65527, 2, 1, 65528, 2, 1, 65529, 2, 1, 65530, 2, 1, 65531, 2, 1, 65525, 65534, 0, 65526, 65534, 0, 65527, 65534, 0, 65528, 65534, 0, 65529, 65534, 0, 65530, 65534, 0, 65531, 65534, 0, 65531, 1, 0, 65530, 1, 0, 65529, 1, 0, 65528, 1, 0, 65527, 1, 0, 65526, 1, 0, 65525, 1, 0, 65525, 0, 0, 65525, 65535, 0, 65526, 65535, 0, 65527, 65535, 0, 65528, 65535, 0, 65529, 65535, 0, 65530, 65535, 0, 65526, 0, 0, 65527, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65531, 65535, 0, 65534, 2, 1, 65535, 2, 1, 65534, 1, 0)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
