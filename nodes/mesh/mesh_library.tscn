@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dxno4urktftn5"]
+[gd_scene load_steps=34 format=3 uid="uid://dxno4urktftn5"]
 
 [ext_resource type="Shader" uid="uid://cgaa32iq036pl" path="res://nodes/mesh/water_direction.tres" id="1_bhp0h"]
 [ext_resource type="Shader" uid="uid://b0ar7tw7tnarv" path="res://nodes/mesh/water_shader.tres" id="1_bjfoo"]
@@ -140,10 +140,50 @@ shader_parameter/ColorParameter = Color(0.688883, 0.083621, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_6x2tv"]
 material = SubResource("ShaderMaterial_lduni")
-size = Vector3(10, 10, 1)
+size = Vector3(10, 5, 1)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_s5m7u"]
 points = PackedVector3Array(-5.07837, -5.07738, -0.579365, 4.78818, 4.78724, 0.5, 4.78818, -4.78724, 0.5, 5.07837, 5.07738, -0.579365, -4.78818, 4.78724, 0.5, 5.07837, -5.07738, -0.579365, -5.07837, 5.07738, -0.579365, -4.78818, -4.78724, 0.5)
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_li3cs"]
+parameter_name = "ColorParameter"
+default_value_enabled = true
+default_value = Color(0.688883, 0.0836214, 9.62615e-08, 1)
+
+[sub_resource type="VisualShader" id="VisualShader_ageoa"]
+code = "shader_type spatial;
+uniform vec4 ColorParameter : source_color = vec4(0.688883, 0.083621, 0.000000, 1.000000);
+
+
+
+void fragment() {
+// ColorParameter:2
+	vec4 n_out2p0 = ColorParameter;
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0.xyz);
+
+
+}
+"
+graph_offset = Vector2(-99.696, 124.032)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_li3cs")
+nodes/fragment/2/position = Vector2(0, 120)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8fu32"]
+render_priority = 0
+shader = SubResource("VisualShader_ageoa")
+shader_parameter/ColorParameter = Color(0.688883, 0.083621, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ijcbb"]
+material = SubResource("ShaderMaterial_8fu32")
+size = Vector3(1, 5, 10)
+subdivide_width = 10
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_av2x7"]
+points = PackedVector3Array(0.5, 5, 5, -0.5, 5, 5, 0.5, -5, 5, 0.5, 5, -5, -0.5, 5, -5, -0.5, -5, 5, 0.5, -5, -5, -0.5, -5, -5)
 
 [node name="MeshLibrary" type="Node3D"]
 
@@ -195,10 +235,20 @@ surface_material_override/0 = SubResource("StandardMaterial3D_2foip")
 shape = SubResource("ConvexPolygonShape3D_n3g4b")
 
 [node name="Wall" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.3995, 0, -23.4356)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.4606, 0, -19.5012)
 mesh = SubResource("BoxMesh_6x2tv")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Wall"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Wall/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_s5m7u")
+
+[node name="Wall2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.0187, 0, -13.5611)
+mesh = SubResource("BoxMesh_ijcbb")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall2/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_av2x7")
