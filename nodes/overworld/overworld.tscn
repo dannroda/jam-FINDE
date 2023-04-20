@@ -18,6 +18,12 @@ corner_radius_bottom_left = 5
 [node name="Overworld" type="Node3D"]
 script = ExtResource("1_oumpr")
 
+[node name="Camera3D2" type="Camera3D" parent="."]
+transform = Transform3D(0.999868, 6.99797e-08, -0.0162484, 0.00421163, 0.965822, 0.259172, 0.0156931, -0.259207, 0.965694, 10.4337, 1.29499, 11.6919)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -3, 30, 0)
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
@@ -48,12 +54,6 @@ show_percentage = false
 
 [node name="Player" parent="." instance=ExtResource("3_8nbuf")]
 transform = Transform3D(-0.0145031, 0, 0.999895, 0, 1, 0, -0.999895, 0, -0.0145031, 7.32153, 0.590653, 9.33248)
-
-[node name="Camera3D2" type="Camera3D" parent="."]
-transform = Transform3D(0.999868, 3.73877e-08, -0.0162484, 0.0114893, 0.707107, 0.707013, 0.0114894, -0.707107, 0.707013, 2.80176, 10.8458, 17.2423)
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -3, 30, 0)
 
 [node name="enemy" parent="." instance=ExtResource("3_342jx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.30166, -0.244057, -8)

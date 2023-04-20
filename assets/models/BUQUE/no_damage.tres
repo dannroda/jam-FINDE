@@ -12,4 +12,5 @@ normal_texture = ExtResource("4_pel42")
 ao_enabled = true
 ao_texture = ExtResource("2_ny5tc")
 heightmap_enabled = true
+heightmap_scale = -0.204
 heightmap_texture = ExtResource("3_wt654")
