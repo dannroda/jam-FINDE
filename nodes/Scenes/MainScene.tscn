@@ -1,9 +1,42 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjyleavirnk5x"]
+[gd_scene load_steps=12 format=3 uid="uid://bjyleavirnk5x"]
 
 [ext_resource type="Script" path="res://nodes/Scenes/MainScene.gd" id="1_1xw87"]
 [ext_resource type="MeshLibrary" uid="uid://cn0t33imym4wl" path="res://nodes/mesh/library.meshlib" id="1_abd7j"]
 [ext_resource type="Texture2D" uid="uid://bjoraq6f7n7vh" path="res://icon.svg" id="1_cfwiw"]
 [ext_resource type="PackedScene" uid="uid://3jg7grbr7iuu" path="res://nodes/units/Player/player.tscn" id="2_rc55g"]
+[ext_resource type="Shader" path="res://assets/shaders/sky/clouds.gdshader" id="5_fsiqw"]
+[ext_resource type="CompressedTexture3D" uid="uid://dbfbysid168mx" path="res://assets/shaders/sky/perlworlnoise.tga" id="6_ahwp2"]
+[ext_resource type="Texture2D" uid="uid://dfkye0uf4i6w1" path="res://assets/shaders/sky/weather.bmp" id="7_282ku"]
+[ext_resource type="CompressedTexture3D" uid="uid://c4dp6g6gouj2b" path="res://assets/shaders/sky/worlnoise.bmp" id="8_fubhx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u2wmv"]
+shader = ExtResource("5_fsiqw")
+shader_parameter/_density = 0.05
+shader_parameter/cloud_coverage = 0.25
+shader_parameter/_time_scale = 1.0
+shader_parameter/_time_offset = 0.0
+shader_parameter/rayleigh = 2.0
+shader_parameter/rayleigh_color = Color(0.26, 0.41, 0.58, 1)
+shader_parameter/mie = 0.005
+shader_parameter/mie_eccentricity = 0.8
+shader_parameter/mie_color = Color(0.63, 0.77, 0.92, 1)
+shader_parameter/turbidity = 10.0
+shader_parameter/sun_disk_scale = 1.0
+shader_parameter/ground_color = Color(1, 1, 1, 1)
+shader_parameter/exposure = 0.1
+shader_parameter/worlnoise = ExtResource("8_fubhx")
+shader_parameter/perlworlnoise = ExtResource("6_ahwp2")
+shader_parameter/weathermap = ExtResource("7_282ku")
+
+[sub_resource type="Sky" id="Sky_5xiax"]
+sky_material = SubResource("ShaderMaterial_u2wmv")
+
+[sub_resource type="Environment" id="Environment_agngb"]
+background_mode = 2
+sky = SubResource("Sky_5xiax")
+ambient_light_source = 3
+tonemap_mode = 3
+tonemap_white = 3.22
 
 [node name="MainScene" type="Node3D"]
 script = ExtResource("1_1xw87")
@@ -67,8 +100,8 @@ data = {
 [node name="Player" parent="Node3D" instance=ExtResource("2_rc55g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.418016, 1.8459, 0.22638)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 22, 0)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_agngb")
 
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Menu/Play" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Menu/Quit" to="." method="_on_quit_pressed"]
