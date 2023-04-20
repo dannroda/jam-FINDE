@@ -41,6 +41,7 @@ func _physics_process(delta):
 	if is_on_wall():
 		velocity.z = current_direction.z * -5
 		velocity.x = current_direction.x * -5
+		velocity.y = 4.5
 		current_speed = 0
 		move_and_slide()
 		damage.emit(30)
