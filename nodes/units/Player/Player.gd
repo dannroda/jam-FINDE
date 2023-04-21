@@ -14,8 +14,9 @@ var current_direction
 var on_current:bool = false
 enum possbile_direction {UP,DOWN,LEFT,RIGHT}
 var on_box_current:possbile_direction
+var hit:bool = false
 @onready var life:int = 90
-@onready var buque = $Buque
+@export var buque:CharacterBody3D
 @onready var default_speed_increase = increase_speed_by
 
 func _ready():
@@ -39,8 +40,10 @@ func _physics_process(delta):
 	if current_speed < 0:
 		current_speed = 0
 	if is_on_wall():
-		velocity.z = current_direction.z * -5
-		velocity.x = current_direction.x * -5
+		if current_direction:
+			velocity.z = current_direction.z * -5
+			velocity.x = current_direction.x * -5
+		hit = true
 		velocity.y = 4.5
 		current_speed = 0
 		move_and_slide()
@@ -50,6 +53,9 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, 5)
 		velocity.z = move_toward(velocity.z, 0, 5)
 		move_and_slide()
+	else:
+#		await get_tree().create_timer(3).timeout
+		hit = false
 		
 
 	if not on_current and current_direction and current_speed > min_speed:

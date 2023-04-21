@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=3 uid="uid://t67f1llrhlv0"]
+
+[ext_resource type="Script" path="res://nodes/units/Buque/buque_character.gd" id="1_0jpsl"]
+[ext_resource type="PackedScene" uid="uid://b8l3i2rg0pjlg" path="res://assets/models/BUQUE/buque.tscn" id="1_yws8b"]
+[ext_resource type="Material" uid="uid://ceqwlma1pjkfd" path="res://assets/models/BUQUE/no_damage.tres" id="2_bci42"]
+[ext_resource type="Material" uid="uid://gryxlabgpfb8" path="res://assets/models/BUQUE/first_damage.tres" id="3_jja7k"]
+[ext_resource type="Material" uid="uid://d171deeupmpgx" path="res://assets/models/BUQUE/second_damage.tres" id="4_hutqo"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wp8ok"]
+points = PackedVector3Array(-0.986983, -1.27199, 6.53349, 1.25822, -1.06778, -5.10349, -0.170417, 1.17742, -5.71616, -1.39541, 0.769, 3.47011, 1.05401, -1.27199, 6.53349, -0.170417, 1.38163, 5.51151, 1.05401, 1.17742, -4.08279, -0.57884, -1.47621, -5.71616, -1.39541, -0.65964, -5.30814, 1.46243, 0.156646, -5.10349, -1.39541, -0.65964, 6.12418, -1.39541, 0.156646, -5.51151, 0.441657, 0.360857, -6.53349, 1.25822, -0.251217, 6.53349, 0.645869, -1.47621, 6.53349, 0.645869, -1.47621, -5.51151, 1.46243, 0.769, 3.47011, -1.19119, -0.251217, 6.53349, -0.84381, 1.0056, -3.50999, 1.25822, -0.863572, 6.53349, -0.57884, -1.47621, 6.53349, -1.39541, -0.863572, -4.69546, 1.46243, -0.455429, -5.10349, -0.782772, 0.360857, -6.32883, 0.0335143, 1.38163, 5.51151, -0.986983, -1.27199, -5.51151, 1.05401, 0.156646, -6.12418, 1.46243, 0.360857, 4.28744, 0.237446, 1.17742, -5.71616, -0.170417, 1.38163, 3.87814, 1.05401, -1.27199, -5.30814, -1.19119, -1.06778, 6.53349)
+
+[node name="BuqueChar" type="CharacterBody3D" node_paths=PackedStringArray("buque_mesh")]
+script = ExtResource("1_0jpsl")
+buque_mesh = NodePath("Buque/RootNode/BUQUEBUQUE")
+materials = Array[StandardMaterial3D]([ExtResource("2_bci42"), ExtResource("3_jja7k"), ExtResource("4_hutqo")])
+
+[node name="Buque" parent="." instance=ExtResource("1_yws8b")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5.68416)
+script = null
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0.18084, 5.68416)
+shape = SubResource("ConvexPolygonShape3D_wp8ok")
+
+[editable path="Buque"]

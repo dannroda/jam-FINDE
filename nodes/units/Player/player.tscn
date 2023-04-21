@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://3jg7grbr7iuu"]
+[gd_scene load_steps=4 format=3 uid="uid://3jg7grbr7iuu"]
 
 [ext_resource type="Script" path="res://nodes/units/Player/Player.gd" id="1_dsf25"]
-[ext_resource type="PackedScene" uid="uid://b8l3i2rg0pjlg" path="res://assets/models/BUQUE/buque.tscn" id="2_72ysq"]
 [ext_resource type="PackedScene" uid="uid://2eumhy6vbr7h" path="res://assets/models/REMOLCADOR/boat.tscn" id="3_8wn7j"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e8icx"]
@@ -32,9 +31,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.386583, 2.11668, 0)
 [node name="Collision" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.00369453, -0.357545, 0.30048)
 shape = SubResource("BoxShape3D_e8icx")
-
-[node name="Buque" parent="." instance=ExtResource("2_72ysq")]
-transform = Transform3D(0.999848, -0.0174524, 0, 0.0174524, 0.999848, 0, 0, 0, 1, 0, 0, 8.66612)
 
 [node name="Boat" parent="." instance=ExtResource("3_8wn7j")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
