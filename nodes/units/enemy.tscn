@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bxmqe7bo5rfrx"]
+[gd_scene load_steps=6 format=3 uid="uid://bxmqe7bo5rfrx"]
 
+[ext_resource type="Script" path="res://nodes/units/enemy.gd" id="1_2qvuw"]
 [ext_resource type="Shader" uid="uid://saynjqn5qxkk" path="res://nodes/units/enemy.tres" id="1_t5t3o"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x32x1"]
@@ -12,6 +13,7 @@ shader = ExtResource("1_t5t3o")
 material = SubResource("ShaderMaterial_fu1pf")
 
 [node name="enemy" type="CharacterBody3D"]
+script = ExtResource("1_2qvuw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_x32x1")
