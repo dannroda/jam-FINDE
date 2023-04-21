@@ -8,6 +8,8 @@ extends CharacterBody3D
 
 signal change_direction(direction,on_current)
 signal damage(amount)
+signal lose
+var win:bool = false
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var current_speed:float = min_speed
 var current_direction
@@ -25,52 +27,52 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+	if not win:
+	#	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	#		velocity.y = JUMP_VELOCITY
+		var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+		var direction = (transform.basis * Vector3(0, 0, input_dir.y)).normalized()
+		var steer_direction = (transform.basis * Vector3(input_dir.x, 0, 0)).normalized()
+		if not on_current and not is_on_wall() and direction and Input.is_action_pressed("ui_up"):
+			if $EngineNormal.volume_db < 0:
+				$EngineNormal.volume_db += 10 * delta
+			velocity.z = direction.z * current_speed
+			velocity.x = direction.x * current_speed
+			current_direction = direction
+			if current_speed < max_speed:
+				current_speed += increase_speed_by * delta
+			
+		if current_speed < 0:
+			current_speed = 0
+		if is_on_wall():
+			if current_direction:
+				velocity.z = current_direction.z * -5
+				velocity.x = current_direction.x * -5
+			hit = true
+			$HitSound.play()
+			velocity.y = 4.5
+			current_speed = 0
+			move_and_slide()
+			damage.emit(30)
+			await get_tree().create_timer(1).timeout
+			velocity.x = move_toward(velocity.x, 0, 5)
+			velocity.z = move_toward(velocity.z, 0, 5)
+			move_and_slide()
+		else:
+	#		await get_tree().create_timer(3).timeout
+			hit = false
+			
 
-#	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-#		velocity.y = JUMP_VELOCITY
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	var direction = (transform.basis * Vector3(0, 0, input_dir.y)).normalized()
-	var steer_direction = (transform.basis * Vector3(input_dir.x, 0, 0)).normalized()
-	if not on_current and not is_on_wall() and direction and Input.is_action_pressed("ui_up"):
-		if $EngineNormal.volume_db < 0:
-			$EngineNormal.volume_db += 10 * delta
-		velocity.z = direction.z * current_speed
-		velocity.x = direction.x * current_speed
-		current_direction = direction
-		if current_speed < max_speed:
-			current_speed += increase_speed_by * delta
-	if current_speed < 0:
-		current_speed = 0
-	if is_on_wall():
-		if current_direction:
-			velocity.z = current_direction.z * -5
-			velocity.x = current_direction.x * -5
-		hit = true
-		$HitSound.play()
-		velocity.y = 4.5
-		current_speed = 0
+		if not on_current and current_direction and current_speed > min_speed:
+			current_speed -= decrease_speed_by * delta
+			velocity.z = current_direction.z * current_speed
+			velocity.x = current_direction.x * current_speed
+		if Input.is_action_pressed("ui_left"):
+			rotation.y += rotation_speed * delta
+		if Input.is_action_pressed("ui_right"):
+			rotation.y -= rotation_speed * delta
+
 		move_and_slide()
-		damage.emit(30)
-		await get_tree().create_timer(1).timeout
-		print("WALLL")
-		velocity.x = move_toward(velocity.x, 0, 5)
-		velocity.z = move_toward(velocity.z, 0, 5)
-		move_and_slide()
-	else:
-#		await get_tree().create_timer(3).timeout
-		hit = false
-		
-
-	if not on_current and current_direction and current_speed > min_speed:
-		current_speed -= decrease_speed_by * delta
-		velocity.z = current_direction.z * current_speed
-		velocity.x = current_direction.x * current_speed
-	if Input.is_action_pressed("ui_left"):
-		rotation.y += rotation_speed * delta
-	if Input.is_action_pressed("ui_right"):
-		rotation.y -= rotation_speed * delta
-
-	move_and_slide()
 
 func update_direction():
 	velocity.z *= increase_speed_by

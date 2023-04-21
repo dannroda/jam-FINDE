@@ -51,5 +51,6 @@ func two_damage():
 		buque_mesh.set_surface_override_material(0,materials[2])
 func three_damage():
 #	$Collision.disabled = true
+	player.lose.emit()
 	await get_tree().create_timer(2).timeout
 	queue_free()

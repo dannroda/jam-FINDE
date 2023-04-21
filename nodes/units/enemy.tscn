@@ -1,18 +1,71 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxmqe7bo5rfrx"]
+[gd_scene load_steps=12 format=3 uid="uid://bxmqe7bo5rfrx"]
 
 [ext_resource type="Script" path="res://nodes/units/enemy.gd" id="1_2qvuw"]
 [ext_resource type="Shader" uid="uid://saynjqn5qxkk" path="res://nodes/units/enemy.tres" id="1_t5t3o"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_x32x1"]
 
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_3gbug"]
+constant = Color(0.651912, 9.8668e-07, 0.320163, 1)
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_l5jl7"]
+parameter_name = "FloatParameter"
+default_value_enabled = true
+default_value = 1.0
+
+[sub_resource type="VisualShader" id="VisualShader_hd4j8"]
+code = "shader_type spatial;
+uniform float FloatParameter = 1;
+
+
+
+void fragment() {
+// ColorConstant:2
+	vec4 n_out2p0 = vec4(0.651912, 0.000001, 0.320163, 1.000000);
+
+
+// FloatParameter:3
+	float n_out3p0 = FloatParameter;
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0.xyz);
+	ALPHA = n_out3p0;
+
+
+}
+"
+graph_offset = Vector2(25.9394, 218.606)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorConstant_3gbug")
+nodes/fragment/2/position = Vector2(100, 140)
+nodes/fragment/3/node = SubResource("VisualShaderNodeFloatParameter_l5jl7")
+nodes/fragment/3/position = Vector2(100, 220)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 3, 0, 0, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fu1pf"]
 render_priority = 0
-shader = ExtResource("1_t5t3o")
+shader = SubResource("VisualShader_hd4j8")
+shader_parameter/FloatParameter = 1.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_f7qu0"]
 material = SubResource("ShaderMaterial_fu1pf")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ivns2"]
+render_priority = 0
+shader = ExtResource("1_t5t3o")
+shader_parameter/FloatParameter = 0.2
+
+[sub_resource type="SphereMesh" id="SphereMesh_do4ji"]
+material = SubResource("ShaderMaterial_ivns2")
+radius = 7.0
+height = 14.0
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_3eiry"]
+points = PackedVector3Array(-1.90947, -6.60534, -1.26965, 1.29172, 6.84394, 0.648347, 1.71413, 6.60986, 1.50006, 6.18605, -0.637843, -3.18665, 2.13019, -1.90916, 6.37354, -6.36803, 1.69885, -2.32868, -0.633257, 1.2834, -6.84228, -4.88252, 1.06287, 4.89737, 6.16073, -2.33361, 2.34151, -4.84554, -4.21933, 2.75073, 2.9672, -5.07247, -3.79711, 1.49218, -6.14987, 2.97588, -4.0006, -3.37457, -4.63296, 3.80543, 3.58534, 4.64783, 5.31262, 4.0316, -2.11224, -2.74703, 6.14462, -1.89827, -2.74004, 4.64874, 4.44612, 1.91156, 4.65352, -4.85769, -1.06157, -0.854876, 6.85227, 1.92492, -1.27732, -6.59626, -6.39059, -2.7724, -0.630755, -6.14852, 2.97121, 1.4935, 6.41063, 2.56032, 1.07348, -3.16326, 2.95864, -5.48823, 4.26419, -5.53262, -0.417379, -1.68658, -5.29337, 4.2426, 0.647147, 3.19428, 6.1843, -0.62838, -4.24814, -5.51521, 4.24859, 1.69488, -5.29192, 4.89098, 1.06127, 4.89002, -6.83893, -0.640718, 1.29068, -2.96362, 6.15598, 1.49337)
+
 [node name="enemy" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 6
 script = ExtResource("1_2qvuw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -20,3 +73,15 @@ shape = SubResource("BoxShape3D_x32x1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_f7qu0")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Area3D"]
+mesh = SubResource("SphereMesh_do4ji")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("ConvexPolygonShape3D_3eiry")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

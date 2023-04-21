@@ -1,25 +1,38 @@
-[gd_resource type="VisualShader" load_steps=2 format=3 uid="uid://saynjqn5qxkk"]
+[gd_resource type="VisualShader" load_steps=3 format=3 uid="uid://saynjqn5qxkk"]
 
 [sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_8bsuf"]
-constant = Color(0.406597, 0.00197278, 0.864634, 1)
+constant = Color(0.651912, 9.8668e-07, 0.320163, 1)
+
+[sub_resource type="VisualShaderNodeFloatParameter" id="VisualShaderNodeFloatParameter_vyux5"]
+parameter_name = "FloatParameter"
+default_value_enabled = true
+default_value = 1.0
 
 [resource]
 code = "shader_type spatial;
+uniform float FloatParameter = 1;
 
 
 
 void fragment() {
 // ColorConstant:2
-	vec4 n_out2p0 = vec4(0.406597, 0.001973, 0.864634, 1.000000);
+	vec4 n_out2p0 = vec4(0.651912, 0.000001, 0.320163, 1.000000);
+
+
+// FloatParameter:3
+	float n_out3p0 = FloatParameter;
 
 
 // Output:0
 	ALBEDO = vec3(n_out2p0.xyz);
+	ALPHA = n_out3p0;
 
 
 }
 "
-graph_offset = Vector2(100.365, 48.29)
+graph_offset = Vector2(25.9394, 218.606)
 nodes/fragment/2/node = SubResource("VisualShaderNodeColorConstant_8bsuf")
-nodes/fragment/2/position = Vector2(140, 160)
-nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0)
+nodes/fragment/2/position = Vector2(100, 140)
+nodes/fragment/3/node = SubResource("VisualShaderNodeFloatParameter_vyux5")
+nodes/fragment/3/position = Vector2(100, 220)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 3, 0, 0, 1)

@@ -12,7 +12,7 @@ size = Vector3(0.756819, 2.90838, 0.631548)
 process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.418016, -0.0216145, 0.22638)
 collision_layer = 5
-collision_mask = 5
+collision_mask = 7
 platform_on_leave = 1
 platform_wall_layers = 1
 script = ExtResource("1_dsf25")
@@ -22,7 +22,7 @@ max_speed = 33.0
 metadata/_edit_lock_ = true
 
 [node name="Camera3D" type="Camera3D" parent="Marker3D"]
-transform = Transform3D(1, 0, 0, 0, 0.813121, 0.582094, 0, -0.582094, 0.813121, 0, 5.87092, 17.4716)
+transform = Transform3D(1, 0, 0, 0, 0.969145, 0.246491, 0, -0.246491, 0.969145, 0, 5.87092, 22.3896)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Marker3D/Camera3D"]
 metadata/_edit_lock_ = true

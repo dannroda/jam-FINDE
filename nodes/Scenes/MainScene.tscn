@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bjyleavirnk5x"]
+[gd_scene load_steps=14 format=3 uid="uid://bjyleavirnk5x"]
 
 [ext_resource type="Script" path="res://nodes/Scenes/MainScene.gd" id="1_1xw87"]
 [ext_resource type="MeshLibrary" uid="uid://cn0t33imym4wl" path="res://nodes/mesh/library.meshlib" id="1_abd7j"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dfkye0uf4i6w1" path="res://assets/shaders/sky/weather.bmp" id="7_282ku"]
 [ext_resource type="CompressedTexture3D" uid="uid://c4dp6g6gouj2b" path="res://assets/shaders/sky/worlnoise.bmp" id="8_fubhx"]
 [ext_resource type="PackedScene" uid="uid://dahl818nfnjyk" path="res://nodes/tools/audio_library.tscn" id="9_ri2rd"]
+[ext_resource type="PackedScene" uid="uid://b20uirfv2xhvo" path="res://assets/models/World/mapa.fbx" id="10_0odwh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u2wmv"]
 shader = ExtResource("5_fsiqw")
@@ -58,9 +59,26 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
+[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
 [node name="Menu" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
 alignment = 1
+
+[node name="Info" type="VBoxContainer" parent="CanvasLayer/HBoxContainer/Menu"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HBoxContainer/Menu/Info"]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+texture = ExtResource("1_cfwiw")
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/Menu/Info"]
+layout_mode = 2
+text = "Mercomar"
+horizontal_alignment = 1
 
 [node name="Play" type="Button" parent="CanvasLayer/HBoxContainer/Menu"]
 custom_minimum_size = Vector2(200, 100)
@@ -73,23 +91,6 @@ layout_mode = 2
 text = "Quit"
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="Info" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/HBoxContainer/Info"]
-custom_minimum_size = Vector2(200, 200)
-layout_mode = 2
-texture = ExtResource("1_cfwiw")
-
-[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer/Info"]
-layout_mode = 2
-text = "GameName/Logo"
-horizontal_alignment = 1
-
-[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -106,7 +107,10 @@ data = {
 }
 
 [node name="Boat" parent="Node3D" instance=ExtResource("4_npynn")]
-transform = Transform3D(-0.979834, 0, 0.199813, 0, 1, 0, -0.199813, 0, -0.979834, -0.668769, 1.28836, 0.523482)
+transform = Transform3D(-0.999683, 0, -0.0251646, 0, 1, 0, 0.0251646, 0, -0.999683, -0.641138, 1.28836, 3.42161)
+
+[node name="mapa" parent="Node3D" instance=ExtResource("10_0odwh")]
+transform = Transform3D(-11.0116, 0, 99.3919, 0, 100, 0, -99.3919, 0, -11.0116, 1.14929, 1.1258, 2.95375)
 
 [node name="AudioLibrary" parent="." instance=ExtResource("9_ri2rd")]
 

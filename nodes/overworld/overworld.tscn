@@ -1,7 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://covohbva0p0he"]
+[gd_scene load_steps=20 format=3 uid="uid://covohbva0p0he"]
 
 [ext_resource type="Script" path="res://nodes/overworld/overworld.gd" id="1_oumpr"]
 [ext_resource type="Shader" path="res://assets/shaders/sky/clouds.gdshader" id="2_44rkp"]
+[ext_resource type="PackedScene" uid="uid://dahl818nfnjyk" path="res://nodes/tools/audio_library.tscn" id="2_yuo5o"]
 [ext_resource type="MeshLibrary" uid="uid://cn0t33imym4wl" path="res://nodes/mesh/library.meshlib" id="3_0a8kx"]
 [ext_resource type="Texture2D" uid="uid://dfkye0uf4i6w1" path="res://assets/shaders/sky/weather.bmp" id="3_0m2oe"]
 [ext_resource type="PackedScene" uid="uid://3jg7grbr7iuu" path="res://nodes/units/Player/player.tscn" id="3_8nbuf"]
@@ -12,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://dqh1o1nlxfyoy" path="res://assets/models/BOYA/boya.tscn" id="7_5gaab"]
 [ext_resource type="PackedScene" uid="uid://t67f1llrhlv0" path="res://nodes/units/Buque/buque_character.tscn" id="11_mpjqr"]
 [ext_resource type="PackedScene" uid="uid://bxmqe7bo5rfrx" path="res://nodes/units/enemy.tscn" id="12_wmc4m"]
+[ext_resource type="Script" path="res://nodes/overworld/EnemiesDefaults.gd" id="13_jdfqi"]
+[ext_resource type="PackedScene" uid="uid://i2xjsm0g0gtk" path="res://nodes/overworld/Map/Puerto/puerto.tscn" id="15_p2rmd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_50bxm"]
 shader = ExtResource("2_44rkp")
@@ -48,11 +51,15 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="Overworld" type="Node3D" node_paths=PackedStringArray("player_life", "player_speed", "player")]
+[node name="Overworld" type="Node3D" node_paths=PackedStringArray("player_life", "player_speed", "player", "lose_dialog", "win_dialog")]
 script = ExtResource("1_oumpr")
 player_life = NodePath("HUD/HBoxContainer/VBoxContainer/PlayerLife")
 player_speed = NodePath("HUD/HBoxContainer/VBoxContainer/PlayerSpeed")
 player = NodePath("PlayerNode/Player")
+lose_dialog = NodePath("HUD/LoseDialog")
+win_dialog = NodePath("HUD/WinDialog")
+
+[node name="AudioLibrary" parent="." instance=ExtResource("2_yuo5o")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kaa5m")
@@ -115,14 +122,33 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
+[node name="LoseDialog" type="ConfirmationDialog" parent="HUD"]
+initial_position = 2
+title = "Hundieron tu acorBUQUE"
+size = Vector2i(300, 100)
+ok_button_text = "Si"
+dialog_text = "Quieres volver a intentarlo?"
+cancel_button_text = "No"
+
+[node name="WinDialog" type="ConfirmationDialog" parent="HUD"]
+title = "Llegaste al puerto!"
+size = Vector2i(243, 109)
+ok_button_text = "Si"
+dialog_text = "Has cumplido con el objetivo!
+Deseas volver a jugar?"
+cancel_button_text = "No, volver al menu"
+
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("3_0a8kx")
 cell_size = Vector3(10, 10, 10)
 cell_center_y = false
 data = {
-"cells": PackedInt32Array(0, 0, 0, 0, 65535, 0, 65535, 65535, 0, 65535, 0, 0, 65534, 65534, 0, 65535, 65534, 0, 0, 65534, 0, 1, 65534, 0, 1, 65535, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 65535, 1, 0, 65534, 65535, 0, 65533, 1, 0, 65533, 0, 0, 65533, 65535, 0, 65533, 65534, 0, 1, 65533, 1, 0, 65533, 1, 65535, 65533, 1, 65534, 65533, 1, 65532, 65533, 1, 65533, 65533, 1, 65532, 65534, 0, 65532, 65535, 0, 65532, 0, 0, 65532, 1, 0, 65532, 2, 1, 65533, 2, 1, 0, 2, 1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 0, 1, 2, 65533, 1, 2, 65534, 1, 2, 65535, 1, 65534, 0, 0, 65531, 65533, 1, 65530, 65533, 1, 65529, 65533, 1, 65528, 65533, 1, 65527, 65533, 1, 65526, 65533, 1, 65525, 65533, 1, 65524, 65533, 1, 65524, 65534, 1, 65524, 65535, 1, 65524, 0, 1, 65524, 1, 1, 65524, 2, 1, 65525, 2, 1, 65526, 2, 1, 65527, 2, 1, 65528, 2, 1, 65529, 2, 1, 65530, 2, 1, 65531, 2, 1, 65525, 65534, 0, 65526, 65534, 0, 65527, 65534, 0, 65528, 65534, 0, 65529, 65534, 0, 65530, 65534, 0, 65531, 65534, 0, 65531, 1, 0, 65530, 1, 0, 65529, 1, 0, 65528, 1, 0, 65527, 1, 0, 65526, 1, 0, 65525, 1, 0, 65525, 0, 0, 65525, 65535, 0, 65526, 65535, 0, 65527, 65535, 0, 65528, 65535, 0, 65529, 65535, 0, 65530, 65535, 0, 65526, 0, 0, 65527, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65531, 65535, 0, 65534, 2, 1, 65535, 2, 1, 65534, 1, 0)
+"cells": PackedInt32Array(0, 0, 0, 0, 65535, 0, 65535, 65535, 0, 65535, 0, 0, 65534, 65534, 0, 65535, 65534, 0, 0, 65534, 0, 1, 65534, 0, 1, 65535, 0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 65535, 1, 0, 65534, 65535, 0, 65533, 1, 0, 65533, 0, 0, 65533, 65535, 0, 65533, 65534, 0, 1, 65533, 1, 0, 65533, 1, 65535, 65533, 1, 65534, 65533, 1, 65532, 65533, 1, 65533, 65533, 1, 65532, 65534, 0, 65532, 65535, 0, 65532, 0, 0, 65532, 1, 0, 65532, 2, 1, 65533, 2, 1, 0, 2, 1, 1, 2, 1, 2, 2, 1, 2, 1, 1, 2, 0, 1, 2, 65533, 1, 2, 65534, 1, 2, 65535, 1, 65534, 0, 0, 65531, 65533, 1, 65530, 65533, 1, 65529, 65533, 1, 65528, 65533, 1, 65527, 65533, 1, 65526, 65533, 1, 65525, 65533, 0, 65524, 65533, 0, 65524, 65534, 0, 65524, 65535, 0, 65524, 0, 0, 65524, 1, 0, 65524, 2, 0, 65525, 2, 0, 65526, 2, 1, 65527, 2, 1, 65528, 2, 1, 65529, 2, 1, 65530, 2, 1, 65531, 2, 1, 65525, 65534, 0, 65526, 65534, 0, 65527, 65534, 0, 65528, 65534, 0, 65529, 65534, 0, 65530, 65534, 0, 65531, 65534, 0, 65531, 1, 0, 65530, 1, 0, 65529, 1, 0, 65528, 1, 0, 65527, 1, 0, 65526, 1, 0, 65525, 1, 0, 65525, 0, 0, 65525, 65535, 0, 65526, 65535, 0, 65527, 65535, 0, 65528, 65535, 0, 65529, 65535, 0, 65530, 65535, 0, 65526, 0, 0, 65527, 0, 0, 65528, 0, 0, 65529, 0, 0, 65530, 0, 0, 65531, 0, 0, 65531, 65535, 0, 65534, 2, 1, 65535, 2, 1, 65534, 1, 0, 65523, 65532, 0, 65523, 65531, 0, 65522, 65531, 0, 65524, 65531, 0, 65524, 65532, 0, 65524, 65530, 0, 65523, 65530, 0, 65522, 65530, 0, 65521, 65530, 0, 65520, 65530, 0, 65519, 65530, 0, 65518, 65530, 0, 65517, 65530, 0, 65516, 65530, 0, 65517, 65531, 0, 65518, 65531, 0, 65519, 65531, 0, 65519, 65532, 0, 65520, 65532, 0, 65521, 65531, 0, 65521, 65532, 0, 65520, 65531, 0, 65522, 65532, 0, 65523, 65533, 0, 65522, 65533, 0, 65521, 65533, 0, 65520, 65533, 0, 65518, 65532, 0, 65517, 65532, 0, 65518, 65533, 0, 65518, 65534, 0, 65519, 65534, 0, 65519, 65533, 0, 65517, 65533, 0, 65522, 65534, 0, 65522, 65535, 0, 65521, 65535, 0, 65520, 65535, 0, 65519, 65535, 0, 65518, 65535, 0, 65517, 65534, 0, 65517, 65535, 0, 65516, 65535, 0, 65516, 65534, 0, 65520, 65534, 0, 65521, 65534, 0, 65523, 65534, 0, 65523, 65535, 0, 65523, 0, 0, 65523, 1, 0, 65523, 2, 0, 65522, 2, 0, 65521, 2, 0, 65520, 2, 0, 65519, 2, 0, 65518, 2, 0, 65517, 2, 0, 65516, 2, 0, 65516, 1, 0, 65516, 0, 0, 65516, 65533, 0, 65516, 65532, 0, 65516, 65531, 0, 65517, 0, 0, 65517, 1, 0, 65518, 1, 0, 65519, 1, 0, 65520, 1, 0, 65521, 1, 0, 65522, 1, 0, 65522, 0, 0, 65521, 0, 0, 65518, 0, 0, 65519, 0, 0, 65520, 0, 0, 65525, 65530, 0, 65525, 65531, 0, 65525, 65532, 0, 65525, 3, 0, 65524, 3, 0, 65523, 3, 0, 65522, 3, 0, 65521, 3, 0, 65520, 3, 0, 65519, 3, 0, 65518, 3, 0, 65517, 3, 0, 65516, 3, 0, 65515, 3, 0, 65515, 2, 0, 65515, 1, 0, 65515, 0, 0, 65515, 65535, 0, 65515, 65534, 0, 65515, 65533, 0, 65515, 65531, 0, 65515, 65530, 0, 65515, 65532, 0)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="Puerto" parent="." instance=ExtResource("15_p2rmd")]
+transform = Transform3D(400, 0, 0, 0, 400, 0, 0, 0, 400, -161.446, 0.517618, -15.609)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -0.459053, 0.888409, 0, -0.888409, -0.459053, 0, 22.1529, -1.61561)
@@ -152,10 +178,23 @@ direction = 0
 
 [node name="Boya" parent="Obstacles" instance=ExtResource("7_5gaab")]
 
-[node name="Enemies" type="Node3D" parent="."]
+[node name="Enemies" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("13_jdfqi")
+target = NodePath("../PlayerNode/Player")
 
 [node name="enemy" parent="Enemies" node_paths=PackedStringArray("target") instance=ExtResource("12_wmc4m")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.3643, 0, -6.09093)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.7484, 0, 15.2197)
 target = NodePath("../../PlayerNode/Player")
 
+[node name="enemy2" parent="Enemies" instance=ExtResource("12_wmc4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.7217, 0, 0)
+
 [connection signal="damage" from="PlayerNode/Player" to="." method="_on_player_damage"]
+[connection signal="lose" from="PlayerNode/Player" to="." method="_on_player_lose"]
+[connection signal="about_to_popup" from="HUD/LoseDialog" to="." method="_on_confirmation_dialog_about_to_popup"]
+[connection signal="canceled" from="HUD/LoseDialog" to="." method="_on_confirmation_dialog_canceled"]
+[connection signal="confirmed" from="HUD/LoseDialog" to="." method="_on_confirmation_dialog_confirmed"]
+[connection signal="about_to_popup" from="HUD/WinDialog" to="." method="_on_win_dialog_about_to_popup"]
+[connection signal="canceled" from="HUD/WinDialog" to="." method="_on_confirmation_dialog_canceled"]
+[connection signal="confirmed" from="HUD/WinDialog" to="." method="_on_confirmation_dialog_confirmed"]
+[connection signal="body_entered" from="Puerto" to="." method="_on_puerto_body_entered"]
