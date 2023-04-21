@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://rbhmrvxnataa"
+path="res://.godot/imported/motor roto.wav-d30be873234b2df85bd5ed1dd617f2aa.sample"
+
+[deps]
+
+source_file="res://assets/audio/FX/motor roto.wav"
+dest_files=["res://.godot/imported/motor roto.wav-d30be873234b2df85bd5ed1dd617f2aa.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

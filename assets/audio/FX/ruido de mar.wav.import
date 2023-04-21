@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://db52pgss1uug5"
+path="res://.godot/imported/ruido de mar.wav-45f3483bbcdcd9f4e4f4f0252b1d21ac.sample"
+
+[deps]
+
+source_file="res://assets/audio/FX/ruido de mar.wav"
+dest_files=["res://.godot/imported/ruido de mar.wav-45f3483bbcdcd9f4e4f4f0252b1d21ac.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
