@@ -1,16 +1,17 @@
-[gd_scene load_steps=16 format=3 uid="uid://covohbva0p0he"]
+[gd_scene load_steps=17 format=3 uid="uid://covohbva0p0he"]
 
 [ext_resource type="Script" path="res://nodes/overworld/overworld.gd" id="1_oumpr"]
 [ext_resource type="Shader" path="res://assets/shaders/sky/clouds.gdshader" id="2_44rkp"]
 [ext_resource type="MeshLibrary" uid="uid://cn0t33imym4wl" path="res://nodes/mesh/library.meshlib" id="3_0a8kx"]
 [ext_resource type="Texture2D" uid="uid://dfkye0uf4i6w1" path="res://assets/shaders/sky/weather.bmp" id="3_0m2oe"]
 [ext_resource type="PackedScene" uid="uid://3jg7grbr7iuu" path="res://nodes/units/Player/player.tscn" id="3_8nbuf"]
-[ext_resource type="PackedScene" uid="uid://bxmqe7bo5rfrx" path="res://nodes/units/enemy.tscn" id="3_342jx"]
 [ext_resource type="CompressedTexture3D" uid="uid://dbfbysid168mx" path="res://assets/shaders/sky/perlworlnoise.tga" id="3_skc2e"]
 [ext_resource type="PackedScene" uid="uid://cwoj8rrxdpvl" path="res://nodes/modifiers/water_movement_col.tscn" id="5_16l0m"]
 [ext_resource type="Script" path="res://nodes/overworld/CurrentModifiers.gd" id="5_qrkb7"]
 [ext_resource type="CompressedTexture3D" uid="uid://c4dp6g6gouj2b" path="res://assets/shaders/sky/worlnoise.bmp" id="5_tggvu"]
 [ext_resource type="PackedScene" uid="uid://dqh1o1nlxfyoy" path="res://assets/models/BOYA/boya.tscn" id="7_5gaab"]
+[ext_resource type="PackedScene" uid="uid://t67f1llrhlv0" path="res://nodes/units/Buque/buque_character.tscn" id="11_mpjqr"]
+[ext_resource type="PackedScene" uid="uid://bxmqe7bo5rfrx" path="res://nodes/units/enemy.tscn" id="12_wmc4m"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_50bxm"]
 shader = ExtResource("2_44rkp")
@@ -47,14 +48,25 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
-[node name="Overworld" type="Node3D"]
+[node name="Overworld" type="Node3D" node_paths=PackedStringArray("player_life", "player_speed", "player")]
 script = ExtResource("1_oumpr")
+player_life = NodePath("HUD/HBoxContainer/VBoxContainer/PlayerLife")
+player_speed = NodePath("HUD/HBoxContainer/VBoxContainer/PlayerSpeed")
+player = NodePath("PlayerNode/Player")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_kaa5m")
 
-[node name="Player" parent="." instance=ExtResource("3_8nbuf")]
-transform = Transform3D(-0.0145031, 0, 0.999895, 0, 1, 0, -0.999895, 0, -0.0145031, 4.24639, 0.726305, 9.33248)
+[node name="PlayerNode" type="Node3D" parent="."]
+
+[node name="Player" parent="PlayerNode" node_paths=PackedStringArray("buque") instance=ExtResource("3_8nbuf")]
+transform = Transform3D(-0.0145031, 0, 0.999895, 0, 1, 0, -0.999895, 0, -0.0145031, -1.01418, 0.726305, 9.33248)
+buque = NodePath("../BuqueChar")
+
+[node name="BuqueChar" parent="PlayerNode" node_paths=PackedStringArray("player") instance=ExtResource("11_mpjqr")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 2.72376, 0.920397, 9.11763)
+axis_lock_angular_y = true
+player = NodePath("../Player")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -3, 30, 0)
@@ -62,36 +74,46 @@ transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -3, 30, 0)
 [node name="Camera3D2" type="Camera3D" parent="."]
 transform = Transform3D(0.046603, 0.158701, -0.986226, 0.0533944, 0.985492, 0.161106, 0.997486, -0.0601669, 0.0374532, 0.995024, 1.69639, 10.8961)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HBoxContainer"]
+[node name="VSpacer" type="Control" parent="HUD/HBoxContainer"]
+custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 
-[node name="PlayerLife" type="ProgressBar" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/HBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="PlayerLife" type="ProgressBar" parent="HUD/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
+size_flags_vertical = 10
 tooltip_text = "Life: "
 theme_override_styles/fill = SubResource("StyleBoxFlat_4sitx")
 max_value = 90.0
 value = 90.0
 show_percentage = false
 
-[node name="PlayerSpeed" type="ProgressBar" parent="CanvasLayer/HBoxContainer/VBoxContainer"]
+[node name="PlayerSpeed" type="ProgressBar" parent="HUD/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 show_percentage = false
 
-[node name="enemy" parent="." instance=ExtResource("3_342jx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.30166, -0.244057, -8)
+[node name="Control" type="HBoxContainer" parent="HUD/HBoxContainer/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="HUD/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
 
 [node name="GridMap" type="GridMap" parent="."]
 mesh_library = ExtResource("3_0a8kx")
@@ -109,7 +131,7 @@ sky_mode = 2
 
 [node name="CurrentModifiers" type="Node3D" parent="."]
 script = ExtResource("5_qrkb7")
-player_node = NodePath("../Player")
+player_node = NodePath("../PlayerNode/Player")
 
 [node name="WaterMovementRight" parent="CurrentModifiers" instance=ExtResource("5_16l0m")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -52.5898, 0, -14.6453)
@@ -130,4 +152,10 @@ direction = 0
 
 [node name="Boya" parent="Obstacles" instance=ExtResource("7_5gaab")]
 
-[connection signal="damage" from="Player" to="." method="_on_player_damage"]
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="enemy" parent="Enemies" node_paths=PackedStringArray("target") instance=ExtResource("12_wmc4m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.3643, 0, -6.09093)
+target = NodePath("../../PlayerNode/Player")
+
+[connection signal="damage" from="PlayerNode/Player" to="." method="_on_player_damage"]
