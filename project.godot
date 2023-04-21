@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Jam Finde"
+config/name="Mercomar - JAM FINDE"
 run/main_scene="res://nodes/Scenes/MainScene.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -27,4 +27,4 @@ enabled=PackedStringArray()
 [rendering]
 
 renderer/rendering_method="mobile"
-renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
