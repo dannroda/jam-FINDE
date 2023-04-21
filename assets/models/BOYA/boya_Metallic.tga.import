@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bgiwqc3rumc2o"
 path.s3tc="res://.godot/imported/boya_Metallic.tga-146b1c426dda4bc3fa564ed8130bd3b5.s3tc.ctex"
+path.etc2="res://.godot/imported/boya_Metallic.tga-146b1c426dda4bc3fa564ed8130bd3b5.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/models/BOYA/boya_Metallic.tga"
-dest_files=["res://.godot/imported/boya_Metallic.tga-146b1c426dda4bc3fa564ed8130bd3b5.s3tc.ctex"]
+dest_files=["res://.godot/imported/boya_Metallic.tga-146b1c426dda4bc3fa564ed8130bd3b5.s3tc.ctex", "res://.godot/imported/boya_Metallic.tga-146b1c426dda4bc3fa564ed8130bd3b5.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://c8tf4x1kofuas"
 path.s3tc="res://.godot/imported/arrow-rigth.png-540bdcc47175488af535ed08f0c2400d.s3tc.ctex"
+path.etc2="res://.godot/imported/arrow-rigth.png-540bdcc47175488af535ed08f0c2400d.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/textures/arrow-rigth.png"
-dest_files=["res://.godot/imported/arrow-rigth.png-540bdcc47175488af535ed08f0c2400d.s3tc.ctex"]
+dest_files=["res://.godot/imported/arrow-rigth.png-540bdcc47175488af535ed08f0c2400d.s3tc.ctex", "res://.godot/imported/arrow-rigth.png-540bdcc47175488af535ed08f0c2400d.etc2.ctex"]
 
 [params]
 

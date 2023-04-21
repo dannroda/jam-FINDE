@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bryudcs50pm1e"
 path.s3tc="res://.godot/imported/boya_BaseColor.tga-988290bf0d156210f7cde67e3cca57a2.s3tc.ctex"
+path.etc2="res://.godot/imported/boya_BaseColor.tga-988290bf0d156210f7cde67e3cca57a2.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/models/BOYA/boya_BaseColor.tga"
-dest_files=["res://.godot/imported/boya_BaseColor.tga-988290bf0d156210f7cde67e3cca57a2.s3tc.ctex"]
+dest_files=["res://.godot/imported/boya_BaseColor.tga-988290bf0d156210f7cde67e3cca57a2.s3tc.ctex", "res://.godot/imported/boya_BaseColor.tga-988290bf0d156210f7cde67e3cca57a2.etc2.ctex"]
 
 [params]
 

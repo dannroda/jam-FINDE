@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://b85o883py002g"
 path.s3tc="res://.godot/imported/buquemesh2_buquecarga2_AO.tga-8028777f6f4f499e11081448f3d61764.s3tc.ctex"
+path.etc2="res://.godot/imported/buquemesh2_buquecarga2_AO.tga-8028777f6f4f499e11081448f3d61764.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/models/BUQUE/texturas daño 2/buquemesh2_buquecarga2_AO.tga"
-dest_files=["res://.godot/imported/buquemesh2_buquecarga2_AO.tga-8028777f6f4f499e11081448f3d61764.s3tc.ctex"]
+dest_files=["res://.godot/imported/buquemesh2_buquecarga2_AO.tga-8028777f6f4f499e11081448f3d61764.s3tc.ctex", "res://.godot/imported/buquemesh2_buquecarga2_AO.tga-8028777f6f4f499e11081448f3d61764.etc2.ctex"]
 
 [params]
 

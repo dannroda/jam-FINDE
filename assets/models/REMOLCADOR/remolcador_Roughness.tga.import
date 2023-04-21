@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://dscs2xmc0b2kb"
 path.s3tc="res://.godot/imported/remolcador_Roughness.tga-df18a1d852858c6255d60333242cfe9f.s3tc.ctex"
+path.etc2="res://.godot/imported/remolcador_Roughness.tga-df18a1d852858c6255d60333242cfe9f.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/models/REMOLCADOR/remolcador_Roughness.tga"
-dest_files=["res://.godot/imported/remolcador_Roughness.tga-df18a1d852858c6255d60333242cfe9f.s3tc.ctex"]
+dest_files=["res://.godot/imported/remolcador_Roughness.tga-df18a1d852858c6255d60333242cfe9f.s3tc.ctex", "res://.godot/imported/remolcador_Roughness.tga-df18a1d852858c6255d60333242cfe9f.etc2.ctex"]
 
 [params]
 

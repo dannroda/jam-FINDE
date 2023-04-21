@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://bs0v2khekry2r"
 path.s3tc="res://.godot/imported/buquemesh_buquecarga2_Height.tga-8ec0b355134ddda849c2b85cba165e41.s3tc.ctex"
+path.etc2="res://.godot/imported/buquemesh_buquecarga2_Height.tga-8ec0b355134ddda849c2b85cba165e41.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/models/BUQUE/texturas daño 2/buquemesh_buquecarga2_Height.tga"
-dest_files=["res://.godot/imported/buquemesh_buquecarga2_Height.tga-8ec0b355134ddda849c2b85cba165e41.s3tc.ctex"]
+dest_files=["res://.godot/imported/buquemesh_buquecarga2_Height.tga-8ec0b355134ddda849c2b85cba165e41.s3tc.ctex", "res://.godot/imported/buquemesh_buquecarga2_Height.tga-8ec0b355134ddda849c2b85cba165e41.etc2.ctex"]
 
 [params]
 

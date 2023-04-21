@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://befvkc8as2fvu"
 path.s3tc="res://.godot/imported/remolcador_BaseColor.tga-245082c359f374f4bdafd504bd515eff.s3tc.ctex"
+path.etc2="res://.godot/imported/remolcador_BaseColor.tga-245082c359f374f4bdafd504bd515eff.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/models/REMOLCADOR/remolcador_BaseColor.tga"
-dest_files=["res://.godot/imported/remolcador_BaseColor.tga-245082c359f374f4bdafd504bd515eff.s3tc.ctex"]
+dest_files=["res://.godot/imported/remolcador_BaseColor.tga-245082c359f374f4bdafd504bd515eff.s3tc.ctex", "res://.godot/imported/remolcador_BaseColor.tga-245082c359f374f4bdafd504bd515eff.etc2.ctex"]
 
 [params]
 

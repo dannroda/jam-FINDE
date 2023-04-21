@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://0nb5kbwcique"
 path.s3tc="res://.godot/imported/boya_Roughness.tga-cd5c48b0ddcdf0ef4d6d3aed214d356a.s3tc.ctex"
+path.etc2="res://.godot/imported/boya_Roughness.tga-cd5c48b0ddcdf0ef4d6d3aed214d356a.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/models/BOYA/boya_Roughness.tga"
-dest_files=["res://.godot/imported/boya_Roughness.tga-cd5c48b0ddcdf0ef4d6d3aed214d356a.s3tc.ctex"]
+dest_files=["res://.godot/imported/boya_Roughness.tga-cd5c48b0ddcdf0ef4d6d3aed214d356a.s3tc.ctex", "res://.godot/imported/boya_Roughness.tga-cd5c48b0ddcdf0ef4d6d3aed214d356a.etc2.ctex"]
 
 [params]
 
