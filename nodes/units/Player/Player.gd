@@ -32,6 +32,8 @@ func _physics_process(delta):
 	var direction = (transform.basis * Vector3(0, 0, input_dir.y)).normalized()
 	var steer_direction = (transform.basis * Vector3(input_dir.x, 0, 0)).normalized()
 	if not on_current and not is_on_wall() and direction and Input.is_action_pressed("ui_up"):
+		if $EngineNormal.volume_db < 0:
+			$EngineNormal.volume_db += 10 * delta
 		velocity.z = direction.z * current_speed
 		velocity.x = direction.x * current_speed
 		current_direction = direction
@@ -44,6 +46,7 @@ func _physics_process(delta):
 			velocity.z = current_direction.z * -5
 			velocity.x = current_direction.x * -5
 		hit = true
+		$HitSound.play()
 		velocity.y = 4.5
 		current_speed = 0
 		move_and_slide()

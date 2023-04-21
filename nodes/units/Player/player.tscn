@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://3jg7grbr7iuu"]
+[gd_scene load_steps=6 format=3 uid="uid://3jg7grbr7iuu"]
 
 [ext_resource type="Script" path="res://nodes/units/Player/Player.gd" id="1_dsf25"]
 [ext_resource type="PackedScene" uid="uid://2eumhy6vbr7h" path="res://assets/models/REMOLCADOR/boat.tscn" id="3_8wn7j"]
+[ext_resource type="AudioStream" uid="uid://dk466ft16d6w8" path="res://assets/audio/FX/motor tranqui.wav" id="3_unqhg"]
+[ext_resource type="AudioStream" uid="uid://2wahgew27buu" path="res://assets/audio/FX/Impact Metal Resonant Overdriven Designed Stereo-003.wav" id="4_pfkm4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_e8icx"]
 size = Vector3(0.756819, 2.90838, 0.631548)
@@ -34,5 +36,14 @@ shape = SubResource("BoxShape3D_e8icx")
 
 [node name="Boat" parent="." instance=ExtResource("3_8wn7j")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="EngineNormal" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_unqhg")
+volume_db = -30.0
+autoplay = true
+bus = &"BoatEngine"
+
+[node name="HitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_pfkm4")
 
 [connection signal="damage" from="." to="." method="_on_damage"]

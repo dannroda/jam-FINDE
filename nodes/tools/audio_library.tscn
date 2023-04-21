@@ -5,8 +5,8 @@
 
 [node name="AudioLibrary" type="Node"]
 script = ExtResource("1_bvak7")
+sounds = Array[AudioStreamPlayer]([null])
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer" parent="."]
+[node name="WaterSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_tqrrx")
-autoplay = true
 bus = &"Water"

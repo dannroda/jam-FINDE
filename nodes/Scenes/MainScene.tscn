@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bjyleavirnk5x"]
+[gd_scene load_steps=13 format=3 uid="uid://bjyleavirnk5x"]
 
 [ext_resource type="Script" path="res://nodes/Scenes/MainScene.gd" id="1_1xw87"]
 [ext_resource type="MeshLibrary" uid="uid://cn0t33imym4wl" path="res://nodes/mesh/library.meshlib" id="1_abd7j"]
@@ -8,6 +8,7 @@
 [ext_resource type="CompressedTexture3D" uid="uid://dbfbysid168mx" path="res://assets/shaders/sky/perlworlnoise.tga" id="6_ahwp2"]
 [ext_resource type="Texture2D" uid="uid://dfkye0uf4i6w1" path="res://assets/shaders/sky/weather.bmp" id="7_282ku"]
 [ext_resource type="CompressedTexture3D" uid="uid://c4dp6g6gouj2b" path="res://assets/shaders/sky/worlnoise.bmp" id="8_fubhx"]
+[ext_resource type="PackedScene" uid="uid://dahl818nfnjyk" path="res://nodes/tools/audio_library.tscn" id="9_ri2rd"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_u2wmv"]
 shader = ExtResource("5_fsiqw")
@@ -106,6 +107,8 @@ data = {
 
 [node name="Boat" parent="Node3D" instance=ExtResource("4_npynn")]
 transform = Transform3D(-0.979834, 0, 0.199813, 0, 1, 0, -0.199813, 0, -0.979834, -0.668769, 1.28836, 0.523482)
+
+[node name="AudioLibrary" parent="." instance=ExtResource("9_ri2rd")]
 
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Menu/Play" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/HBoxContainer/Menu/Quit" to="." method="_on_quit_pressed"]
